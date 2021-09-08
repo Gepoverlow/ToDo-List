@@ -1,14 +1,9 @@
-// const todoContainer = document.getElementById("container-todos");
+let ul = document.getElementById("todo-ul");
 
-// function addInfo() {
-//   //
-//   let todoDiv = document.createElement("div");
-//   todoDiv.classList.add("todoForm");
-//   todoContainer.appendChild(todoDiv);
-//   //
-//   let todoForm = document.createElement("form");
-//   todoDiv.appendChild(todoForm);
-//   //
-// }
+function updateDOM() {
+  let listItem = document.createElement("li");
+  ul.appendChild(listItem);
+  listItem.innerHTML = "hi testing";
+}
 
-// export { addInfo };
+export { updateDOM };
