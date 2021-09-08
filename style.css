@@ -34,5 +34,14 @@ html {
 }
 
 #container-todos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+}
+
+.todoForm {
+  height: 600px;
+  width: 500px;
+  background-color: darkgray;
 }
