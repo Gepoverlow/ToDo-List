@@ -3,16 +3,18 @@ import { addTodo, cancelAddTodo } from "./todoCreator";
 ("use strict");
 
 let form = document.getElementById("todo-form");
+let btnAddToDo = document.getElementById("btn-add-todo");
+let btnSubmit = document.getElementById("button-submit");
+let btnCancel = document.getElementById("button-cancel");
 
-document.getElementById("btn-add-todo").addEventListener("click", () => {
+btnAddToDo.addEventListener("click", () => {
   form.classList.remove("hidden");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("button-submit").addEventListener("click", addTodo);
-  document
-    .getElementById("button-cancel")
-    .addEventListener("click", cancelAddTodo);
+  btnSubmit.addEventListener("click", addTodo);
+
+  btnCancel.addEventListener("click", cancelAddTodo);
 });
 
 //   {

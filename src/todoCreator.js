@@ -1,4 +1,4 @@
-import { updateDOM } from "./domCreator";
+import { addToDoToDOM } from "./domCreator";
 
 ("use strict");
 
@@ -29,6 +29,7 @@ const addTodo = (ev) => {
   );
 
   projectArray.push(toDo);
+  //
   document.forms[0].reset();
 
   form.classList.add("hidden");
@@ -37,7 +38,7 @@ const addTodo = (ev) => {
 
   ul.innerHTML = "";
 
-  projectArray.forEach(updateDOM);
+  projectArray.forEach(addToDoToDOM);
 };
 
 const cancelAddTodo = (ev) => {
