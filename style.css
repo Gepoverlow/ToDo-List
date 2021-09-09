@@ -9,6 +9,17 @@ html {
   margin: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
+li {
+  background-color: darkgray;
+  height: 70px;
+  width: 70px;
+  border: 3px solid red;
+}
+
 #container-all {
   display: flex;
   flex-direction: column;
