@@ -13,7 +13,6 @@ btnAddToDo.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   btnSubmit.addEventListener("click", addTodo);
-
   btnCancel.addEventListener("click", cancelAddTodo);
 });
 
@@ -25,3 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
 //     priority: document.getElementById("input-priority").value,
 //     notes: document.getElementById("input-notes").value,
 //   };
+
+// let array = [
+//   {
+//     id: 111,
+//   },
+//   {
+//     id: 222,
+//   },
+//   {
+//     id: 333,
+//   },
+// ];
+// function findIndex() {
+//   let pos = array
+//     .map(function (e) {
+//       return e.id;
+//     })
+//     .indexOf(333);
+//   return pos;
+// }
+// console.log(findIndex());

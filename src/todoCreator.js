@@ -1,11 +1,11 @@
-import { addToDoToDOM } from "./domCreator";
+import { manipulateDOM } from "./domCreator";
 
 ("use strict");
 
 let form = document.getElementById("todo-form");
 let ul = document.getElementById("todo-ul");
 
-const projectArray = [];
+export let projectArray = [];
 
 class ToDo {
   constructor(title, description, dueDate, priority, notes) {
@@ -38,7 +38,7 @@ const addTodo = (ev) => {
 
   ul.innerHTML = "";
 
-  projectArray.forEach(addToDoToDOM);
+  projectArray.forEach(manipulateDOM);
 };
 
 const cancelAddTodo = (ev) => {

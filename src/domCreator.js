@@ -1,6 +1,8 @@
+import { projectArray } from "./todoCreator.js";
+
 let ul = document.getElementById("todo-ul");
 
-function addToDoToDOM(freshTodo) {
+function manipulateDOM(freshTodo) {
   let listItem = document.createElement("li");
   ul.appendChild(listItem);
 
@@ -20,6 +22,24 @@ function addToDoToDOM(freshTodo) {
   listDate.innerHTML = `${freshTodo.dueDate}`;
   listCloseBtn.innerHTML = "Delete";
   listEditBtn.innerHTML = "Edit";
+
+  function findIndex(arr) {
+    let pos = arr
+      .map(function (e) {
+        return e.id;
+      })
+      .indexOf(parseInt(listItem.id));
+    return pos;
+  }
+
+  function deleteTodo() {
+    projectArray.splice(findIndex(projectArray), 1);
+    ul.removeChild(listItem);
+    console.log(projectArray);
+  }
+  let btn = listItem.childNodes[2];
+
+  btn.addEventListener("click", deleteTodo);
 }
 
-export { addToDoToDOM };
+export { manipulateDOM };
