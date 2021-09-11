@@ -2,7 +2,7 @@ import { manipulateDOM } from "./domCreator";
 
 ("use strict");
 
-let form = document.getElementById("todo-form");
+let formAdd = document.getElementById("todo-form-add");
 let ul = document.getElementById("todo-ul");
 
 export let projectArray = [];
@@ -21,18 +21,18 @@ class ToDo {
 const addTodo = (ev) => {
   ev.preventDefault();
   let toDo = new ToDo(
-    document.getElementById("input-title").value,
-    document.getElementById("input-description").value,
-    document.getElementById("input-due-date").value,
-    document.getElementById("input-priority").value,
-    document.getElementById("input-notes").value
+    document.getElementById("input-title-add").value,
+    document.getElementById("input-description-add").value,
+    document.getElementById("input-due-date-add").value,
+    document.getElementById("input-priority-add").value,
+    document.getElementById("input-notes-add").value
   );
 
   projectArray.push(toDo);
   //
   document.forms[0].reset();
 
-  form.classList.add("hidden");
+  formAdd.classList.add("hidden");
 
   console.log(projectArray);
 
@@ -43,7 +43,7 @@ const addTodo = (ev) => {
 
 const cancelAddTodo = (ev) => {
   ev.preventDefault();
-  form.classList.add("hidden");
+  formAdd.classList.add("hidden");
 };
 
 export { addTodo, cancelAddTodo };

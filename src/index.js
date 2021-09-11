@@ -2,10 +2,10 @@ import { addTodo, cancelAddTodo } from "./todoCreator";
 
 ("use strict");
 
-let form = document.getElementById("todo-form");
+let form = document.getElementById("todo-form-add");
 let btnAddToDo = document.getElementById("btn-add-todo");
-let btnSubmit = document.getElementById("button-submit");
-let btnCancel = document.getElementById("button-cancel");
+let btnSubmit = document.getElementById("button-submit-add");
+let btnCancel = document.getElementById("button-cancel-add");
 
 btnAddToDo.addEventListener("click", () => {
   form.classList.remove("hidden");

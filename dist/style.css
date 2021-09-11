@@ -14,9 +14,11 @@ ul {
 }
 
 li {
+  display: flex;
+  justify-content: space-around;
   background-color: darkgray;
-  height: 170px;
-  width: 170px;
+  height: 50px;
+  width: 500px;
   border: 3px solid red;
 }
 
@@ -51,7 +53,9 @@ li {
   width: 100%;
 }
 
-#todo-form {
+#todo-form-add,
+#todo-form-edit,
+#todo-form-view {
   margin: 2rem;
   width: 500px;
   background-color: darkgray;
