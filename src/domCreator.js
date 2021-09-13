@@ -41,7 +41,7 @@ function render(freshTodo) {
     ul.removeChild(listItem);
     console.log("testing delete todo");
   }
-
+  //
   function editTodo() {
     let ulNodeList = ul.getElementsByTagName("li");
     let titleEdit = document.getElementById("input-title-edit");
@@ -57,14 +57,16 @@ function render(freshTodo) {
         dueDateEdit.value = projectArray[i].dueDate;
         priorityEdit.value = projectArray[i].priority;
         notesEdit.value = projectArray[i].notes;
-        console.log("does this bit work alright?NO");
+        console.log(
+          "does this bit work alright? NO, it keeps printing an extra copy on each click event iteration"
+        );
       });
     }
 
     formEdit.classList.remove("hidden");
     console.log("this bit works alright");
   }
-
+  //
   listDeleteBtn.addEventListener("click", deleteTodo);
   listEditBtn.addEventListener("click", editTodo);
 }
