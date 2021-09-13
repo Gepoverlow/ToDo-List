@@ -1,4 +1,4 @@
-import { manipulateDOM } from "./domCreator";
+// import { manipulateDOM } from "./domCreator";
 import { render } from "./domCreator";
 
 ("use strict");
@@ -6,7 +6,6 @@ import { render } from "./domCreator";
 let ul = document.getElementById("todo-ul");
 let formAdd = document.getElementById("todo-form-add");
 let formEdit = document.getElementById("todo-form-edit");
-let formView = document.getElementById("todo-form-view");
 
 export let projectArray = [];
 
@@ -21,7 +20,7 @@ class ToDo {
   }
 }
 
-const addTodo = (ev) => {
+const submitAddTodo = (ev) => {
   ev.preventDefault();
   let toDo = new ToDo(
     document.getElementById("input-title-add").value,
@@ -38,7 +37,6 @@ const addTodo = (ev) => {
   formAdd.classList.add("hidden");
 
   console.log(projectArray);
-  console.log(projectArray.length);
 
   ul.innerHTML = "";
 
@@ -50,7 +48,7 @@ const cancelAddTodo = (ev) => {
   formAdd.classList.add("hidden");
 };
 
-const editTodo = (ev) => {
+const submitEditTodo = (ev) => {
   ev.preventDefault();
   formEdit.classList.add("hidden");
 };
@@ -60,9 +58,4 @@ const cancelEditTodo = (ev) => {
   formEdit.classList.add("hidden");
 };
 
-const cancelViewTodo = (ev) => {
-  ev.preventDefault();
-  formView.classList.add("hidden");
-};
-
-export { addTodo, cancelAddTodo, editTodo, cancelEditTodo, cancelViewTodo };
+export { submitAddTodo, cancelAddTodo, submitEditTodo, cancelEditTodo };

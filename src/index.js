@@ -1,9 +1,8 @@
 import {
-  addTodo,
+  submitAddTodo,
   cancelAddTodo,
-  editTodo,
+  submitEditTodo,
   cancelEditTodo,
-  cancelViewTodo,
 } from "./todoCreator";
 
 ("use strict");
@@ -24,13 +23,13 @@ btnAddToDo.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   //
-  btnSubmitAdd.addEventListener("click", addTodo);
-  btnCancelAdd.addEventListener("click", cancelAddTodo);
-  //
-  btnSubmitEdit.addEventListener("click", editTodo);
-  btnCancelEdit.addEventListener("click", cancelEditTodo);
-  //
 });
+btnSubmitAdd.addEventListener("click", submitAddTodo);
+btnCancelAdd.addEventListener("click", cancelAddTodo);
+//
+btnSubmitEdit.addEventListener("click", submitEditTodo);
+btnCancelEdit.addEventListener("click", cancelEditTodo);
+//
 
 //   {
 //     id: Date.now(),

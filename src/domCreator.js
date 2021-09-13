@@ -1,4 +1,4 @@
-import { projectArray } from "./todoCreator.js";
+import { submitEditTodo, projectArray } from "./todoCreator.js";
 
 let ul = document.getElementById("todo-ul");
 let formEdit = document.getElementById("todo-form-edit");
@@ -43,12 +43,33 @@ function render(freshTodo) {
   }
 
   function editTodo() {
+    let ulNodeList = ul.getElementsByTagName("li");
+    let titleEdit = document.getElementById("input-title-edit");
+    let descriptionEdit = document.getElementById("input-description-edit");
+    let dueDateEdit = document.getElementById("input-due-date-edit");
+    let priorityEdit = document.getElementById("input-priority-edit");
+    let notesEdit = document.getElementById("input-notes-edit");
+
+    for (let i = 0; i < projectArray.length; i++) {
+      ulNodeList[i].addEventListener("click", function () {
+        titleEdit.value = projectArray[i].title;
+        descriptionEdit.value = projectArray[i].description;
+        dueDateEdit.value = projectArray[i].dueDate;
+        priorityEdit.value = projectArray[i].priority;
+        notesEdit.value = projectArray[i].notes;
+        console.log("does this bit work alright?NO");
+      });
+    }
+
     formEdit.classList.remove("hidden");
+    console.log("this bit works alright");
   }
 
   listDeleteBtn.addEventListener("click", deleteTodo);
   listEditBtn.addEventListener("click", editTodo);
 }
+
+//////////////////////////////////// --------------------------------------///////////////////////////////////--------------------------------------
 
 // function manipulateDOM(freshTodo) {
 //   let listItem = document.createElement("li");
