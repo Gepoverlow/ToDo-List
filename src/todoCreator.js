@@ -1,9 +1,12 @@
 import { manipulateDOM } from "./domCreator";
+import { render } from "./domCreator";
 
 ("use strict");
 
-let formAdd = document.getElementById("todo-form-add");
 let ul = document.getElementById("todo-ul");
+let formAdd = document.getElementById("todo-form-add");
+let formEdit = document.getElementById("todo-form-edit");
+let formView = document.getElementById("todo-form-view");
 
 export let projectArray = [];
 
@@ -35,10 +38,11 @@ const addTodo = (ev) => {
   formAdd.classList.add("hidden");
 
   console.log(projectArray);
+  console.log(projectArray.length);
 
   ul.innerHTML = "";
 
-  projectArray.forEach(manipulateDOM);
+  projectArray.forEach(render);
 };
 
 const cancelAddTodo = (ev) => {
@@ -46,4 +50,19 @@ const cancelAddTodo = (ev) => {
   formAdd.classList.add("hidden");
 };
 
-export { addTodo, cancelAddTodo };
+const editTodo = (ev) => {
+  ev.preventDefault();
+  formEdit.classList.add("hidden");
+};
+
+const cancelEditTodo = (ev) => {
+  ev.preventDefault();
+  formEdit.classList.add("hidden");
+};
+
+const cancelViewTodo = (ev) => {
+  ev.preventDefault();
+  formView.classList.add("hidden");
+};
+
+export { addTodo, cancelAddTodo, editTodo, cancelEditTodo, cancelViewTodo };

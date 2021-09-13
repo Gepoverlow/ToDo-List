@@ -1,19 +1,35 @@
-import { addTodo, cancelAddTodo } from "./todoCreator";
+import {
+  addTodo,
+  cancelAddTodo,
+  editTodo,
+  cancelEditTodo,
+  cancelViewTodo,
+} from "./todoCreator";
 
 ("use strict");
 
 let form = document.getElementById("todo-form-add");
+
 let btnAddToDo = document.getElementById("btn-add-todo");
-let btnSubmit = document.getElementById("button-submit-add");
-let btnCancel = document.getElementById("button-cancel-add");
+
+let btnSubmitAdd = document.getElementById("button-submit-add");
+let btnCancelAdd = document.getElementById("button-cancel-add");
+
+let btnSubmitEdit = document.getElementById("button-submit-edit");
+let btnCancelEdit = document.getElementById("button-cancel-edit");
 
 btnAddToDo.addEventListener("click", () => {
   form.classList.remove("hidden");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  btnSubmit.addEventListener("click", addTodo);
-  btnCancel.addEventListener("click", cancelAddTodo);
+  //
+  btnSubmitAdd.addEventListener("click", addTodo);
+  btnCancelAdd.addEventListener("click", cancelAddTodo);
+  //
+  btnSubmitEdit.addEventListener("click", editTodo);
+  btnCancelEdit.addEventListener("click", cancelEditTodo);
+  //
 });
 
 //   {
