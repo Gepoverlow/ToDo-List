@@ -1,5 +1,5 @@
 // import { manipulateDOM } from "./domCreator";
-import { render } from "./domCreator";
+import { render, getIndex } from "./domCreator";
 
 ("use strict");
 
@@ -59,11 +59,11 @@ const submitEditTodo = (ev) => {
   let notesEdit = document.getElementById("input-notes-edit");
 
   for (let i = 0; i < projectArray.length; i++) {
-    projectArray[i].title = titleEdit.value;
-    projectArray[i].descrption = descriptionEdit.value;
-    projectArray[i].dueDate = dueDateEdit.value;
-    projectArray[i].priority = priorityEdit.value;
-    projectArray[i].notes = notesEdit.value;
+    projectArray[getIndex].title = titleEdit.value;
+    projectArray[getIndex].descrption = descriptionEdit.value;
+    projectArray[getIndex].dueDate = dueDateEdit.value;
+    projectArray[getIndex].priority = priorityEdit.value;
+    projectArray[getIndex].notes = notesEdit.value;
   }
 
   ul.innerHTML = "";
@@ -71,6 +71,7 @@ const submitEditTodo = (ev) => {
   projectArray.forEach(render);
 
   console.log(projectArray);
+  console.log(getIndex);
 };
 
 const cancelEditTodo = (ev) => {

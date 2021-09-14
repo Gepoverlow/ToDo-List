@@ -2,6 +2,7 @@ import { projectArray } from "./todoCreator.js";
 
 let ul = document.getElementById("todo-ul");
 let formEdit = document.getElementById("todo-form-edit");
+export let getIndex;
 
 function render(freshTodo) {
   let listItem = document.createElement("li");
@@ -48,8 +49,7 @@ function render(freshTodo) {
     let priorityEdit = document.getElementById("input-priority-edit");
     let notesEdit = document.getElementById("input-notes-edit");
 
-    let getIndex = findIndex(projectArray);
-    let testIndex = findIndex(projectArray);
+    getIndex = findIndex(projectArray);
 
     titleEdit.value = projectArray[getIndex].title;
     descriptionEdit.value = projectArray[getIndex].description;
@@ -58,6 +58,7 @@ function render(freshTodo) {
     notesEdit.value = projectArray[getIndex].notes;
 
     formEdit.classList.remove("hidden");
+    console.log(getIndex);
   }
 
   listEditBtn.addEventListener("click", editTodo);
