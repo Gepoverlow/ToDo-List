@@ -1,4 +1,4 @@
-import { submitEditTodo, projectArray } from "./todoCreator.js";
+import { projectArray } from "./todoCreator.js";
 
 let ul = document.getElementById("todo-ul");
 let formEdit = document.getElementById("todo-form-edit");
@@ -26,7 +26,7 @@ function render(freshTodo) {
   listDate.textContent = `${freshTodo.dueDate}`;
   listDeleteBtn.textContent = "Delete";
   listEditBtn.textContent = "Edit";
-
+  //
   function findIndex(arr) {
     let pos = arr
       .map(function (e) {
@@ -35,40 +35,33 @@ function render(freshTodo) {
       .indexOf(parseInt(listItem.id));
     return pos;
   }
-
+  //
   function deleteTodo() {
     projectArray.splice(findIndex(projectArray), 1);
     ul.removeChild(listItem);
-    console.log("testing delete todo");
   }
   //
   function editTodo() {
-    let ulNodeList = ul.getElementsByTagName("li");
     let titleEdit = document.getElementById("input-title-edit");
     let descriptionEdit = document.getElementById("input-description-edit");
     let dueDateEdit = document.getElementById("input-due-date-edit");
     let priorityEdit = document.getElementById("input-priority-edit");
     let notesEdit = document.getElementById("input-notes-edit");
 
-    for (let i = 0; i < projectArray.length; i++) {
-      ulNodeList[i].addEventListener("click", function () {
-        titleEdit.value = projectArray[i].title;
-        descriptionEdit.value = projectArray[i].description;
-        dueDateEdit.value = projectArray[i].dueDate;
-        priorityEdit.value = projectArray[i].priority;
-        notesEdit.value = projectArray[i].notes;
-        console.log(
-          "does this bit work alright? NO, it keeps printing an extra copy on each click event iteration"
-        );
-      });
-    }
+    let getIndex = findIndex(projectArray);
+    let testIndex = findIndex(projectArray);
+
+    titleEdit.value = projectArray[getIndex].title;
+    descriptionEdit.value = projectArray[getIndex].description;
+    dueDateEdit.value = projectArray[getIndex].dueDate;
+    priorityEdit.value = projectArray[getIndex].priority;
+    notesEdit.value = projectArray[getIndex].notes;
 
     formEdit.classList.remove("hidden");
-    console.log("this bit works alright");
   }
-  //
-  listDeleteBtn.addEventListener("click", deleteTodo);
+
   listEditBtn.addEventListener("click", editTodo);
+  listDeleteBtn.addEventListener("click", deleteTodo);
 }
 
 //////////////////////////////////// --------------------------------------///////////////////////////////////--------------------------------------

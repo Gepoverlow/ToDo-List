@@ -51,6 +51,26 @@ const cancelAddTodo = (ev) => {
 const submitEditTodo = (ev) => {
   ev.preventDefault();
   formEdit.classList.add("hidden");
+
+  let titleEdit = document.getElementById("input-title-edit");
+  let descriptionEdit = document.getElementById("input-description-edit");
+  let dueDateEdit = document.getElementById("input-due-date-edit");
+  let priorityEdit = document.getElementById("input-priority-edit");
+  let notesEdit = document.getElementById("input-notes-edit");
+
+  for (let i = 0; i < projectArray.length; i++) {
+    projectArray[i].title = titleEdit.value;
+    projectArray[i].descrption = descriptionEdit.value;
+    projectArray[i].dueDate = dueDateEdit.value;
+    projectArray[i].priority = priorityEdit.value;
+    projectArray[i].notes = notesEdit.value;
+  }
+
+  ul.innerHTML = "";
+
+  projectArray.forEach(render);
+
+  console.log(projectArray);
 };
 
 const cancelEditTodo = (ev) => {
