@@ -8,7 +8,12 @@ let formAdd = document.getElementById("todo-form-add");
 let formEdit = document.getElementById("todo-form-edit");
 
 export let projectArray = [];
-export let projects = [{ projectArray }];
+export let defaultProject = {
+  id: Date.now(),
+  name: "Default",
+  Array: projectArray,
+};
+export let projects = [defaultProject];
 
 class ToDo {
   constructor(title, description, dueDate, priority, notes) {
