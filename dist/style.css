@@ -13,7 +13,7 @@ ul {
   list-style-type: none;
 }
 
-li {
+#todo-ul li {
   display: flex;
   justify-content: space-around;
   background-color: darkgray;

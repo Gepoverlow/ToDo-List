@@ -1,13 +1,14 @@
 // import { manipulateDOM } from "./domCreator";
-import { render, getIndex } from "./domCreator";
+import { renderTODOS, getIndex } from "./domCreator.js";
 
 ("use strict");
 
-let ul = document.getElementById("todo-ul");
+let todoUL = document.getElementById("todo-ul");
 let formAdd = document.getElementById("todo-form-add");
 let formEdit = document.getElementById("todo-form-edit");
 
 export let projectArray = [];
+export let projects = [{ projectArray }];
 
 class ToDo {
   constructor(title, description, dueDate, priority, notes) {
@@ -36,11 +37,9 @@ const submitAddTodo = (ev) => {
 
   formAdd.classList.add("hidden");
 
-  console.log(projectArray);
+  todoUL.innerHTML = "";
 
-  ul.innerHTML = "";
-
-  projectArray.forEach(render);
+  projectArray.forEach(renderTODOS);
 };
 
 const cancelAddTodo = (ev) => {
@@ -66,12 +65,9 @@ const submitEditTodo = (ev) => {
     projectArray[getIndex].notes = notesEdit.value;
   }
 
-  ul.innerHTML = "";
+  todoUL.innerHTML = "";
 
-  projectArray.forEach(render);
-
-  console.log(projectArray);
-  console.log(getIndex);
+  projectArray.forEach(renderTODOS);
 };
 
 const cancelEditTodo = (ev) => {
