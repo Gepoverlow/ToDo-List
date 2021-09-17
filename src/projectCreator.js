@@ -1,30 +1,52 @@
-import { projectArray } from "./todoCreator.js";
-import { projects } from "./todoCreator.js";
-import { renderPROJECTS } from "./domCreator.js";
+//FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
 
-let projectUL = document.getElementById("project-ul");
-let projectInput = document.getElementById("project-input");
+//FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
 
-class Project {
-  constructor(name) {
-    this.id = Date.now();
-    this.name = name;
-    this.array = [];
-  }
-}
+// import { projectArray } from "./todoCreator.js";
+// import { projects } from "./todoCreator.js";
+// import { renderPROJECTS } from "./domCreator.js";
 
-function submitAddProject() {
-  if (projectInput.value !== "") {
-    let input = projectInput.value;
-    let project = new Project(input);
+// let projectUL = document.getElementById("project-ul");
+// let projectInput = document.getElementById("project-input");
 
-    projectUL.innerHTML = "";
-    projects.forEach(renderPROJECTS);
+// class Project {
+//   constructor(name) {
+//     this.id = Date.now();
+//     this.name = name;
+//     this.array = [];
+//   }
+//   renderTodos() {}
 
-    projects.push(project);
+//   addTodo() {}
 
-    console.log(projects);
-  }
-}
+//   deleteTodo() {}
 
-export { submitAddProject };
+//   editTodo() {}
+
+//   getName() {
+//     return this.name;
+//   }
+// }
+
+// function submitAddProject() {
+//   if (projectInput.value !== "") {
+//     let input = projectInput.value;
+//     let project = new Project(input);
+
+//     projectInput.value = "";
+
+//     projects.push(project);
+
+//     let listItem = document.createElement("li");
+//     projectUL.appendChild(listItem);
+//     listItem.textContent = project.name;
+
+//     console.log(projects);
+
+//     listItem.addEventListener("click", function () {
+//       console.log(project.getName());
+//     });
+//   }
+// }
+
+// export { submitAddProject };

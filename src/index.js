@@ -1,66 +1,40 @@
-import {
-  submitAddTodo,
-  cancelAddTodo,
-  submitEditTodo,
-  cancelEditTodo,
-} from "./todoCreator";
+//FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
 
-import { submitAddProject } from "./projectCreator";
+//FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
 
-("use strict");
+// import {
+//   submitAddTodo,
+//   cancelAddTodo,
+//   submitEditTodo,
+//   cancelEditTodo,
+// } from "./todoCreator";
 
-let form = document.getElementById("todo-form-add");
+// import { submitAddProject } from "./projectCreator";
 
-let btnAddToDo = document.getElementById("btn-add-todo");
-let btnAddProject = document.getElementById("btn-add-project");
+// ("use strict");
 
-let btnSubmitAdd = document.getElementById("button-submit-add");
-let btnCancelAdd = document.getElementById("button-cancel-add");
+// let form = document.getElementById("todo-form-add");
 
-let btnSubmitEdit = document.getElementById("button-submit-edit");
-let btnCancelEdit = document.getElementById("button-cancel-edit");
+// let btnAddToDo = document.getElementById("btn-add-todo");
+// let btnAddProject = document.getElementById("btn-add-project");
 
-btnAddToDo.addEventListener("click", () => {
-  form.classList.remove("hidden");
-});
-btnAddProject.addEventListener("click", submitAddProject);
+// let btnSubmitAdd = document.getElementById("button-submit-add");
+// let btnCancelAdd = document.getElementById("button-cancel-add");
 
-document.addEventListener("DOMContentLoaded", () => {
-  //
-});
-btnSubmitAdd.addEventListener("click", submitAddTodo);
-btnCancelAdd.addEventListener("click", cancelAddTodo);
-//
-btnSubmitEdit.addEventListener("click", submitEditTodo);
-btnCancelEdit.addEventListener("click", cancelEditTodo);
-//
+// let btnSubmitEdit = document.getElementById("button-submit-edit");
+// let btnCancelEdit = document.getElementById("button-cancel-edit");
 
-//   {
-//     id: Date.now(),
-//     title: document.getElementById("input-title").value,
-//     description: document.getElementById("input-description").value,
-//     dueDate: document.getElementById("input-due-date").value,
-//     priority: document.getElementById("input-priority").value,
-//     notes: document.getElementById("input-notes").value,
-//   };
+// btnAddToDo.addEventListener("click", () => {
+//   form.classList.remove("hidden");
+// });
+// btnAddProject.addEventListener("click", submitAddProject);
 
-// let array = [
-//   {
-//     id: 111,
-//   },
-//   {
-//     id: 222,
-//   },
-//   {
-//     id: 333,
-//   },
-// ];
-// function findIndex() {
-//   let pos = array
-//     .map(function (e) {
-//       return e.id;
-//     })
-//     .indexOf(333);
-//   return pos;
-// }
-// console.log(findIndex());
+// document.addEventListener("DOMContentLoaded", () => {
+//   //
+// });
+// btnSubmitAdd.addEventListener("click", submitAddTodo);
+// btnCancelAdd.addEventListener("click", cancelAddTodo);
+// //
+// btnSubmitEdit.addEventListener("click", submitEditTodo);
+// btnCancelEdit.addEventListener("click", cancelEditTodo);
+// //
