@@ -1,7 +1,3 @@
-let defaultProject = [];
-let testProject = [];
-export let projects = [defaultProject, testProject];
-
 class Todo {
   constructor(title, description, dueDate, priority, notes) {
     this.id = Date.now();

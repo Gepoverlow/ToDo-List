@@ -1,7 +1,7 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { projects } from "./todo-Creator.js";
+import { projects, createProject } from "./project-Creator";
 // import { defaultProject, testProject } from "./todo-Creator.js";
-import { renderTodos } from "./dom-Creator.js";
+import { renderTodos, renderProjects } from "./dom-Creator.js";
 import { createTodo, deleteTodo } from "./todo-Creator.js";
 
 let projectUL = document.getElementById("project-ul");
@@ -16,16 +16,26 @@ let todoFormEdit = document.getElementById("todo-form-edit");
 let btnSubmitEdit = document.getElementById("btn-submit-edit");
 let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
-let currentProject = projects[0];
+let btnAddProject = document.getElementById("btn-add-project");
+
+let currentProject = projects[0].todos;
 
 // EVENT LISTENERS
 
 document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
+  enableProjectNavigation();
 });
 
 btnAddToDo.addEventListener("click", () => {
   todoFormAdd.classList.remove("hidden");
+});
+
+btnAddProject.addEventListener("click", () => {
+  createProject(projects);
+  renderProjects(projects);
+  console.log(projects);
+  enableProjectNavigation();
 });
 
 btnSubmitAdd.addEventListener("click", (ev) => {
@@ -80,23 +90,25 @@ todoUL.addEventListener("click", function (e) {
   }
 });
 
-// Get all buttons with class="btn" inside the container
-let projectLIs = projectUL.getElementsByClassName("li");
+function enableProjectNavigation() {
+  // Get all buttons with class="btn" inside the container
+  let projectLIs = projectUL.getElementsByClassName("li");
 
-// Loop through the buttons and add the active class to the current/clicked button
-for (let i = 0; i < projectLIs.length; i++) {
-  projectLIs[i].addEventListener("click", function () {
-    let current = document.getElementsByClassName("active");
-    currentProject = projects[i];
-    renderTodos(currentProject);
-    // If there's no active class
-    if (current.length > 0) {
-      current[0].className = current[0].className.replace(" active", "");
-    }
+  // Loop through the buttons and add the active class to the current/clicked button
+  for (let i = 0; i < projectLIs.length; i++) {
+    projectLIs[i].addEventListener("click", function () {
+      let current = document.getElementsByClassName("active");
+      currentProject = projects[i].todos;
+      renderTodos(currentProject);
+      // If there's no active class
+      if (current.length > 0) {
+        current[0].className = current[0].className.replace(" active", "");
+      }
 
-    // Add the active class to the current/clicked button
-    this.className += " active";
-  });
+      // Add the active class to the current/clicked button
+      this.className += " active";
+    });
+  }
 }
 
 //
