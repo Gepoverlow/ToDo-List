@@ -1,5 +1,6 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { defaultProject, testProject } from "./todo-Creator.js";
+import { projects } from "./todo-Creator.js";
+// import { defaultProject, testProject } from "./todo-Creator.js";
 import { renderTodos } from "./dom-Creator.js";
 import { createTodo, deleteTodo } from "./todo-Creator.js";
 
@@ -15,29 +16,12 @@ let todoFormEdit = document.getElementById("todo-form-edit");
 let btnSubmitEdit = document.getElementById("btn-submit-edit");
 let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
-let defaultProjectBtn = document.getElementById("project-default");
-let testProjectBtn = document.getElementById("project-test");
-
-let currentProject = defaultProject;
+let currentProject = projects[0];
 
 // EVENT LISTENERS
 
 document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
-});
-
-testProjectBtn.addEventListener("click", () => {
-  currentProject = testProject;
-  renderTodos(currentProject);
-
-  testProjectBtn.classList.add("active-project");
-});
-
-defaultProjectBtn.addEventListener("click", () => {
-  currentProject = defaultProject;
-  renderTodos(currentProject);
-
-  defaultProjectBtn.classList.add("active-project");
 });
 
 btnAddToDo.addEventListener("click", () => {
@@ -96,12 +80,24 @@ todoUL.addEventListener("click", function (e) {
   }
 });
 
-//   // e.target is the clicked element!
-//   // If it was a list item
-//   if (e.target && e.target.nodeName == "LI") {
-//     // List item found!  Output the ID!
-//     console.log("List item ", e.target.id.replace("post-"), " was clicked!");
-//   }
+// Get all buttons with class="btn" inside the container
+let projectLIs = projectUL.getElementsByClassName("li");
+
+// Loop through the buttons and add the active class to the current/clicked button
+for (let i = 0; i < projectLIs.length; i++) {
+  projectLIs[i].addEventListener("click", function () {
+    let current = document.getElementsByClassName("active");
+    currentProject = projects[i];
+    renderTodos(currentProject);
+    // If there's no active class
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(" active", "");
+    }
+
+    // Add the active class to the current/clicked button
+    this.className += " active";
+  });
+}
 
 //
 

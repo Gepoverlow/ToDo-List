@@ -1,6 +1,6 @@
-export let defaultProject = [];
-
-export let testProject = [];
+let defaultProject = [];
+let testProject = [];
+export let projects = [defaultProject, testProject];
 
 class Todo {
   constructor(title, description, dueDate, priority, notes) {
@@ -29,10 +29,6 @@ function createTodo(arr) {
   );
 
   arr.push(todo);
-
-  console.log(arr);
 }
 
-function deleteTodo() {}
-
-export { createTodo, deleteTodo };
+export { createTodo };
