@@ -113,3 +113,7 @@ ul {
   background-color: cornflowerblue;
   cursor: pointer;
 }
+
+.active-project {
+  color: red;
+}
