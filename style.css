@@ -23,6 +23,7 @@ ul {
 }
 
 #project-ul li {
+  display: flex;
   padding: 20px;
   cursor: pointer;
   border: 1px solid black;
