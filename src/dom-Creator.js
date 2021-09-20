@@ -34,13 +34,44 @@ function renderProjects(projectArray) {
   // !!
   for (let i = 0; i < projectArray.length; i++) {
     let projectLI = document.createElement("li");
-
-    projectUL.appendChild(projectLI);
+    let projectDeleteBtn = document.createElement("button");
 
     projectLI.textContent = projectArray[i].name;
+    projectDeleteBtn.textContent = "X";
 
     projectLI.classList.add("li");
+
+    projectUL.appendChild(projectLI);
+    projectLI.appendChild(projectDeleteBtn);
   }
 }
 
-export { renderTodos, renderProjects };
+function renderTodoInfo(array, index) {
+  let titleInput = document.getElementById("input-title-edit");
+  let descriptionInput = document.getElementById("input-description-edit");
+  let dueDateInput = document.getElementById("input-due-date-edit");
+  let priorityInput = document.getElementById("input-priority-edit");
+  let notesInput = document.getElementById("input-notes-edit");
+
+  titleInput.value = array[index].title;
+  descriptionInput.value = array[index].description;
+  dueDateInput.value = array[index].dueDate;
+  priorityInput.value = array[index].priority;
+  notesInput.value = array[index].notes;
+}
+
+function submitEditTodo(array, index) {
+  let titleInput = document.getElementById("input-title-edit");
+  let descriptionInput = document.getElementById("input-description-edit");
+  let dueDateInput = document.getElementById("input-due-date-edit");
+  let priorityInput = document.getElementById("input-priority-edit");
+  let notesInput = document.getElementById("input-notes-edit");
+
+  array[index].title = titleInput.value;
+  array[index].description = descriptionInput.value;
+  array[index].dueDate = dueDateInput.value;
+  array[index].priority = priorityInput.value;
+  array[index].notes = notesInput.value;
+}
+
+export { renderTodos, renderProjects, renderTodoInfo, submitEditTodo };

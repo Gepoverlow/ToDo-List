@@ -1,7 +1,12 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { projects, createProject } from "./project-Creator";
+import { projects, createProject, deleteProject } from "./project-Creator";
 // import { defaultProject, testProject } from "./todo-Creator.js";
-import { renderTodos, renderProjects } from "./dom-Creator.js";
+import {
+  renderTodos,
+  renderProjects,
+  renderTodoInfo,
+  submitEditTodo,
+} from "./dom-Creator.js";
 import { createTodo, deleteTodo } from "./todo-Creator.js";
 
 let projectUL = document.getElementById("project-ul");
@@ -17,8 +22,10 @@ let btnSubmitEdit = document.getElementById("btn-submit-edit");
 let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
 let btnAddProject = document.getElementById("btn-add-project");
+let inputAddProject = document.getElementById("project-input");
 
 let currentProject = projects[0].todos;
+let indexOfClickedTodo;
 
 // EVENT LISTENERS
 
@@ -28,14 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 btnAddToDo.addEventListener("click", () => {
-  todoFormAdd.classList.remove("hidden");
+  if (todoFormEdit.classList.contains("hidden")) {
+    todoFormAdd.classList.remove("hidden");
+  }
 });
 
 btnAddProject.addEventListener("click", () => {
-  createProject(projects);
-  renderProjects(projects);
-  console.log(projects);
-  enableProjectNavigation();
+  if (inputAddProject.value !== "") {
+    createProject(projects);
+    renderProjects(projects);
+    enableProjectNavigation();
+  }
 });
 
 btnSubmitAdd.addEventListener("click", (ev) => {
@@ -54,6 +64,8 @@ btnCancelAdd.addEventListener("click", (ev) => {
 btnSubmitEdit.addEventListener("click", (ev) => {
   ev.preventDefault();
   todoFormEdit.classList.add("hidden");
+  submitEditTodo(currentProject, indexOfClickedTodo);
+  renderTodos(currentProject);
 });
 
 btnCancelEdit.addEventListener("click", (ev) => {
@@ -82,10 +94,15 @@ todoUL.addEventListener("click", function (e) {
   }
   //EDIT
   function openEditForm() {
+    indexOfClickedTodo = findIndex(currentProject);
     todoFormEdit.classList.remove("hidden");
+    renderTodoInfo(currentProject, indexOfClickedTodo);
   }
 
-  if (e.target.textContent === "EDIT") {
+  if (
+    e.target.textContent === "EDIT" &&
+    todoFormAdd.classList.contains("hidden")
+  ) {
     openEditForm();
   }
 });
@@ -111,6 +128,7 @@ function enableProjectNavigation() {
   }
 }
 
+s;
 //
 
 //

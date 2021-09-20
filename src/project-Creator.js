@@ -2,12 +2,9 @@ let defaultProject = {
   name: "Default",
   todos: [],
 };
-let testProject = {
-  name: "Test",
-  todos: [],
-};
 
-export let projects = [defaultProject, testProject];
+export let projects = [defaultProject];
+let projectsUL = document.getElementById("project-ul");
 
 class Project {
   constructor(name) {
@@ -25,4 +22,6 @@ function createProject(mainArray) {
   mainArray.push(project);
 }
 
-export { createProject };
+function deleteProject(mainArray) {}
+
+export { createProject, deleteProject };
