@@ -39,6 +39,7 @@ function renderProjects(projectArray) {
     projectLI.textContent = projectArray[i].name;
     projectDeleteBtn.textContent = "X";
 
+    projectLI.id = projectArray[i].id;
     projectLI.classList.add("li");
 
     projectUL.appendChild(projectLI);

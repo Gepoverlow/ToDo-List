@@ -1,4 +1,5 @@
 let defaultProject = {
+  id: "defaultID",
   name: "Default",
   todos: [],
 };
@@ -8,6 +9,7 @@ let projectsUL = document.getElementById("project-ul");
 
 class Project {
   constructor(name) {
+    this.id = Date.now();
     this.name = name;
     this.todos = [];
   }

@@ -31,6 +31,7 @@ let indexOfClickedTodo;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
+  renderProjects(projects);
   enableProjectNavigation();
 });
 
@@ -108,7 +109,7 @@ todoUL.addEventListener("click", function (e) {
 });
 
 function enableProjectNavigation() {
-  // Get all buttons with class="btn" inside the container
+  // Get all buttons with class="li" inside the container
   let projectLIs = projectUL.getElementsByClassName("li");
 
   // Loop through the buttons and add the active class to the current/clicked button
@@ -128,7 +129,6 @@ function enableProjectNavigation() {
   }
 }
 
-s;
 //
 
 //
