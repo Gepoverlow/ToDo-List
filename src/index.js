@@ -1,5 +1,5 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { projects, createProject, deleteProject } from "./project-Creator";
+import { projects, createProject } from "./project-Creator";
 // import { defaultProject, testProject } from "./todo-Creator.js";
 import {
   renderTodos,
@@ -7,7 +7,7 @@ import {
   renderTodoInfo,
   submitEditTodo,
 } from "./dom-Creator.js";
-import { createTodo, deleteTodo } from "./todo-Creator.js";
+import { createTodo, findIndex } from "./todo-Creator.js";
 
 let projectUL = document.getElementById("project-ul");
 let todoUL = document.getElementById("todo-ul");
@@ -36,8 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 btnAddToDo.addEventListener("click", () => {
-  if (todoFormEdit.classList.contains("hidden")) {
+  if (todoFormEdit.classList.contains("hidden") && projects.length !== 0) {
     todoFormAdd.classList.remove("hidden");
+  }
+
+  if (projects.length === 0) {
+    alert("please create a project to store your todos in first");
+    return;
   }
 });
 
@@ -46,6 +51,8 @@ btnAddProject.addEventListener("click", () => {
     createProject(projects);
     renderProjects(projects);
     enableProjectNavigation();
+    console.log(projects);
+    console.log(currentProject);
   }
 });
 
@@ -55,6 +62,8 @@ btnSubmitAdd.addEventListener("click", (ev) => {
   renderTodos(currentProject);
   todoFormAdd.reset();
   todoFormAdd.classList.add("hidden");
+  console.log(projects);
+  console.log(currentProject);
 });
 
 btnCancelAdd.addEventListener("click", (ev) => {
@@ -75,29 +84,21 @@ btnCancelEdit.addEventListener("click", (ev) => {
 });
 
 todoUL.addEventListener("click", function (e) {
-  function findIndex(arr) {
-    let pos = arr
-      .map(function (e) {
-        return e.id;
-      })
-      .indexOf(parseInt(e.target.parentNode.id));
-    return pos;
-  }
-
   // DELETE
   function deleteTodo(array) {
-    array.splice(findIndex(currentProject), 1);
+    array.splice(findIndex(currentProject, e.target.parentNode.id), 1);
     renderTodos(currentProject);
+  }
+
+  //EDIT
+  function openEditForm() {
+    indexOfClickedTodo = findIndex(currentProject, e.target.parentNode.id);
+    todoFormEdit.classList.remove("hidden");
+    renderTodoInfo(currentProject, indexOfClickedTodo);
   }
 
   if (e.target.textContent === "DELETE") {
     deleteTodo(currentProject);
-  }
-  //EDIT
-  function openEditForm() {
-    indexOfClickedTodo = findIndex(currentProject);
-    todoFormEdit.classList.remove("hidden");
-    renderTodoInfo(currentProject, indexOfClickedTodo);
   }
 
   if (
@@ -105,6 +106,22 @@ todoUL.addEventListener("click", function (e) {
     todoFormAdd.classList.contains("hidden")
   ) {
     openEditForm();
+  }
+});
+
+projectUL.addEventListener("click", function (e) {
+  // DELETE
+  function deleteProject(array) {
+    array.splice(findIndex(projects, e.target.parentNode.id), 1);
+    renderProjects(projects);
+    enableProjectNavigation();
+  }
+
+  if (e.target.textContent === "X") {
+    deleteProject(projects);
+    renderTodos(currentProject);
+    console.log(projects);
+    console.log(currentProject);
   }
 });
 
@@ -128,10 +145,6 @@ function enableProjectNavigation() {
     });
   }
 }
-
-//
-
-//
 
 //
 

@@ -27,4 +27,13 @@ function createTodo(arr) {
   arr.push(todo);
 }
 
-export { createTodo };
+function findIndex(arr, target) {
+  let pos = arr
+    .map(function (e) {
+      return e.id;
+    })
+    .indexOf(parseInt(target));
+  return pos;
+}
+
+export { createTodo, findIndex };

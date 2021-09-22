@@ -1,3 +1,5 @@
+import currentProject from "./index.js";
+
 let defaultProject = {
   id: "defaultID",
   name: "Default",
@@ -5,7 +7,6 @@ let defaultProject = {
 };
 
 export let projects = [defaultProject];
-let projectsUL = document.getElementById("project-ul");
 
 class Project {
   constructor(name) {
@@ -15,15 +16,14 @@ class Project {
   }
 }
 
-function createProject(mainArray) {
+function createProject(mainArray, test) {
   let projectInput = document.getElementById("project-input");
   //
   let project = new Project(projectInput.value);
-  projectInput.value = "";
 
   mainArray.push(project);
+
+  projectInput.value = "";
 }
 
-function deleteProject(mainArray) {}
-
-export { createProject, deleteProject };
+export { createProject };
