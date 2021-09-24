@@ -2,6 +2,7 @@ import { defaultProject } from "./todo-Creator.js";
 
 let todoUL = document.getElementById("todo-ul");
 let projectUL = document.getElementById("project-ul");
+let projectLIs = projectUL.getElementsByClassName("li");
 
 function renderTodos(todoArray) {
   // !!
@@ -49,12 +50,7 @@ function renderProjects(projectArray) {
   }
 
   //GIVE THE LAST ITEM OF THE NODELIST THE ACTIVE STYLE
-  let projectLIs = projectUL.getElementsByClassName("li");
-  let lastProject = projectLIs[projectLIs.length - 1];
-  if (projectLIs.length > 0) {
-    lastProject.classList.add("active");
-  }
-  //   for (let i = 0; i < projectLIs.length; i++) {}
+  updateActiveProject(projectLIs.length - 1);
 }
 
 function renderTodoInfo(array, index) {
@@ -83,6 +79,14 @@ function submitEditTodo(array, index) {
   array[index].dueDate = dueDateInput.value;
   array[index].priority = priorityInput.value;
   array[index].notes = notesInput.value;
+}
+
+function updateActiveProject(index) {
+  let projectLIs = projectUL.getElementsByClassName("li");
+  let lastProject = projectLIs[index];
+  if (projectLIs.length > 0) {
+    lastProject.classList.add("active");
+  }
 }
 
 export { renderTodos, renderProjects, renderTodoInfo, submitEditTodo };

@@ -52,6 +52,8 @@ btnAddProject.addEventListener("click", () => {
     createProject(projects);
     renderProjects(projects);
     enableProjectNavigation();
+    giveAddedProjectActiveStatus();
+    console.log(currentProject);
   }
 });
 
@@ -61,8 +63,8 @@ btnSubmitAdd.addEventListener("click", (ev) => {
   renderTodos(currentProject);
   todoFormAdd.reset();
   todoFormAdd.classList.add("hidden");
-  console.log(projects);
   console.log(currentProject);
+  console.log(projects);
 });
 
 btnCancelAdd.addEventListener("click", (ev) => {
@@ -124,7 +126,10 @@ projectUL.addEventListener("click", function (e) {
   if (e.target.textContent === "X" && e.target.parentNode.id !== "defaultID") {
     deleteProject(projects);
     renderTodos(currentProject);
-    currentProject = projects[0].todos;
+    // currentProject = projects[0].todos;
+    giveLastProjectActiveStatus();
+    console.log(currentProject);
+    console.log(projects);
   }
 });
 
@@ -149,6 +154,16 @@ function enableProjectNavigation() {
   }
 }
 
+function giveAddedProjectActiveStatus() {
+  currentProject = projects[projects.length - 1].todos;
+  renderTodos(currentProject);
+}
+
+function giveLastProjectActiveStatus() {
+  console.log("hey_");
+  currentProject = projects[projects.length - 1].todos;
+  renderTodos(currentProject);
+}
 //
 
 //
