@@ -32,6 +32,8 @@ function renderProjects(projectArray) {
   // !!
   projectUL.innerHTML = "";
   // !!
+
+  //CREATE TODO ELEMENTS
   for (let i = 0; i < projectArray.length; i++) {
     let projectLI = document.createElement("li");
     let projectDeleteBtn = document.createElement("button");
@@ -45,6 +47,14 @@ function renderProjects(projectArray) {
     projectUL.appendChild(projectLI);
     projectLI.appendChild(projectDeleteBtn);
   }
+
+  //GIVE THE LAST ITEM OF THE NODELIST THE ACTIVE STYLE
+  let projectLIs = projectUL.getElementsByClassName("li");
+  let lastProject = projectLIs[projectLIs.length - 1];
+  if (projectLIs.length > 0) {
+    lastProject.classList.add("active");
+  }
+  //   for (let i = 0; i < projectLIs.length; i++) {}
 }
 
 function renderTodoInfo(array, index) {

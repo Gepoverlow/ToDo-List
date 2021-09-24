@@ -23,6 +23,7 @@ let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
 let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
+// let inbox = document.getElementById("defaultID");
 
 let currentProject = projects[0].todos;
 let indexOfClickedTodo;
@@ -51,8 +52,6 @@ btnAddProject.addEventListener("click", () => {
     createProject(projects);
     renderProjects(projects);
     enableProjectNavigation();
-    console.log(projects);
-    console.log(currentProject);
   }
 });
 
@@ -117,11 +116,15 @@ projectUL.addEventListener("click", function (e) {
     enableProjectNavigation();
   }
 
-  if (e.target.textContent === "X") {
+  if (e.target.parentNode.id === "defaultID") {
+    alert("Default Project can not be deleted");
+    return;
+  }
+
+  if (e.target.textContent === "X" && e.target.parentNode.id !== "defaultID") {
     deleteProject(projects);
     renderTodos(currentProject);
-    console.log(projects);
-    console.log(currentProject);
+    currentProject = projects[0].todos;
   }
 });
 

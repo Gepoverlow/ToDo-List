@@ -1,8 +1,8 @@
-import currentProject from "./index.js";
+import { currentProject } from "./index.js";
 
 let defaultProject = {
   id: "defaultID",
-  name: "Default",
+  name: "Inbox",
   todos: [],
 };
 
@@ -16,13 +16,11 @@ class Project {
   }
 }
 
-function createProject(mainArray, test) {
+function createProject(mainArray) {
+  //CREATE THE PROJECT
   let projectInput = document.getElementById("project-input");
-  //
   let project = new Project(projectInput.value);
-
   mainArray.push(project);
-
   projectInput.value = "";
 }
 
