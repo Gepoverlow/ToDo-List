@@ -63,7 +63,6 @@ btnSubmitAdd.addEventListener("click", (ev) => {
   renderTodos(currentProject);
   todoFormAdd.reset();
   todoFormAdd.classList.add("hidden");
-  console.log(projects);
 });
 
 btnCancelAdd.addEventListener("click", (ev) => {
@@ -92,7 +91,12 @@ todoUL.addEventListener("click", function (e) {
     }
     if (currentProject === defProject) {
       //   projects[1].todos = [];
-      console.log(projects[1].todos[0].id === parseInt(e.target.parentNode.id));
+      let test = projects.filter((project) =>
+        project.todos.some(
+          (todo) => todo.id === parseInt(e.target.parentNode.id)
+        )
+      );
+      console.log(test);
     }
     renderTodos(currentProject);
   }
