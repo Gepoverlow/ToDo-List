@@ -1,6 +1,4 @@
-import { currentProject } from "./index.js";
-
-let defaultProject = {
+export let defaultProject = {
   id: "defaultID",
   name: "Inbox",
   todos: [],

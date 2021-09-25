@@ -1,3 +1,5 @@
+import { defaultProject } from "./project-Creator";
+
 class Todo {
   constructor(title, description, dueDate, priority, notes) {
     this.id = Date.now();
@@ -9,7 +11,7 @@ class Todo {
   }
 }
 
-function createTodo(arr) {
+function createTodo(currentArr) {
   let titleInput = document.getElementById("input-title-add").value;
   let descriptionInput = document.getElementById("input-description-add").value;
   let dueDateInput = document.getElementById("input-due-date-add").value;
@@ -24,7 +26,10 @@ function createTodo(arr) {
     notesInput
   );
 
-  arr.push(todo);
+  currentArr.push(todo);
+  if (currentArr !== defaultProject.todos) {
+    defaultProject.todos.push(todo);
+  }
 }
 
 function findIndex(arr, target) {

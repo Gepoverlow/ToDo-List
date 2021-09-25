@@ -1,5 +1,5 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { projects, createProject } from "./project-Creator";
+import { projects, createProject, defaultProject } from "./project-Creator";
 // import { defaultProject, testProject } from "./todo-Creator.js";
 import {
   renderTodos,
@@ -25,8 +25,9 @@ let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
 // let inbox = document.getElementById("defaultID");
 
-let currentProject = projects[0].todos;
-let indexOfClickedTodo;
+let defProject = projects[0].todos;
+let currentProject = defProject;
+let indexOfClickedTodo = undefined;
 
 // EVENT LISTENERS
 
@@ -53,7 +54,6 @@ btnAddProject.addEventListener("click", () => {
     renderProjects(projects);
     enableProjectNavigation();
     giveAddedProjectActiveStatus();
-    console.log(currentProject);
   }
 });
 
@@ -63,7 +63,6 @@ btnSubmitAdd.addEventListener("click", (ev) => {
   renderTodos(currentProject);
   todoFormAdd.reset();
   todoFormAdd.classList.add("hidden");
-  console.log(currentProject);
   console.log(projects);
 });
 
@@ -88,6 +87,13 @@ todoUL.addEventListener("click", function (e) {
   // DELETE
   function deleteTodo(array) {
     array.splice(findIndex(currentProject, e.target.parentNode.id), 1);
+    if (currentProject !== defProject) {
+      defProject.splice(findIndex(defProject, e.target.parentNode.id), 1);
+    }
+    if (currentProject === defProject) {
+      //   projects[1].todos = [];
+      console.log(projects[1].todos[0].id === parseInt(e.target.parentNode.id));
+    }
     renderTodos(currentProject);
   }
 
@@ -113,6 +119,7 @@ todoUL.addEventListener("click", function (e) {
 projectUL.addEventListener("click", function (e) {
   // DELETE
   function deleteProject(array) {
+    projects[findIndex(projects, e.target.parentNode.id)].todos = [];
     array.splice(findIndex(projects, e.target.parentNode.id), 1);
     renderProjects(projects);
     enableProjectNavigation();
@@ -128,8 +135,6 @@ projectUL.addEventListener("click", function (e) {
     renderTodos(currentProject);
     // currentProject = projects[0].todos;
     giveLastProjectActiveStatus();
-    console.log(currentProject);
-    console.log(projects);
   }
 });
 
@@ -160,7 +165,6 @@ function giveAddedProjectActiveStatus() {
 }
 
 function giveLastProjectActiveStatus() {
-  console.log("hey_");
   currentProject = projects[projects.length - 1].todos;
   renderTodos(currentProject);
 }
