@@ -22,4 +22,8 @@ function createProject(mainArray) {
   projectInput.value = "";
 }
 
+function getStorageData() {
+  return JSON.parse(localStorage.getItem("projectsArray") || "[]");
+}
+
 export { createProject };

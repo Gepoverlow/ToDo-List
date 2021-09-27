@@ -1,5 +1,3 @@
-import { defaultProject } from "./todo-Creator.js";
-
 let todoUL = document.getElementById("todo-ul");
 let projectUL = document.getElementById("project-ul");
 let projectLIs = projectUL.getElementsByClassName("li");

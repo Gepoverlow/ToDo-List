@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
   renderProjects(projects);
   enableProjectNavigation();
+  console.log(currentProject);
+  console.log(projects);
 });
 
 btnAddToDo.addEventListener("click", () => {
@@ -54,6 +56,7 @@ btnAddProject.addEventListener("click", () => {
     renderProjects(projects);
     enableProjectNavigation();
     giveAddedProjectActiveStatus();
+    addToLocalStorage(projects);
   }
 });
 
@@ -63,6 +66,8 @@ btnSubmitAdd.addEventListener("click", (ev) => {
   renderTodos(currentProject);
   todoFormAdd.reset();
   todoFormAdd.classList.add("hidden");
+  addToLocalStorage(projects);
+  //   console.log(JSON.parse(localStorage.getItem("projectsArray") || "[]"));
 });
 
 btnCancelAdd.addEventListener("click", (ev) => {
@@ -75,6 +80,7 @@ btnSubmitEdit.addEventListener("click", (ev) => {
   todoFormEdit.classList.add("hidden");
   submitEditTodo(currentProject, indexOfClickedTodo);
   renderTodos(currentProject);
+  addToLocalStorage(projects);
 });
 
 btnCancelEdit.addEventListener("click", (ev) => {
@@ -90,15 +96,20 @@ todoUL.addEventListener("click", function (e) {
       defProject.splice(findIndex(defProject, e.target.parentNode.id), 1);
     }
     if (currentProject === defProject) {
-      //   projects[1].todos = [];
-      let test = projects.filter((project) =>
+      let projectOfRepeatedTodo = projects.filter((project) =>
         project.todos.some(
           (todo) => todo.id === parseInt(e.target.parentNode.id)
         )
-      );
-      console.log(test);
+      )[0];
+      if (projectOfRepeatedTodo !== undefined) {
+        projectOfRepeatedTodo.todos.splice(
+          findIndex(projectOfRepeatedTodo.todos, e.target.parentNode.id),
+          1
+        );
+      }
     }
     renderTodos(currentProject);
+    addToLocalStorage(projects);
   }
 
   //EDIT
@@ -139,6 +150,7 @@ projectUL.addEventListener("click", function (e) {
     renderTodos(currentProject);
     // currentProject = projects[0].todos;
     giveLastProjectActiveStatus();
+    addToLocalStorage(projects);
   }
 });
 
@@ -172,57 +184,11 @@ function giveLastProjectActiveStatus() {
   currentProject = projects[projects.length - 1].todos;
   renderTodos(currentProject);
 }
-//
 
-//
+function addToLocalStorage(arr) {
+  localStorage.setItem("projectsArray", JSON.stringify(arr));
+}
 
-//
-
-//
-
-//
-
-//
-
-//
-
-//
-
-//FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-
-// import {
-//   submitAddTodo,
-//   cancelAddTodo,
-//   submitEditTodo,
-//   cancelEditTodo,
-// } from "./todoCreator";
-
-// import { submitAddProject } from "./projectCreator";
-
-// ("use strict");
-
-// let form = document.getElementById("todo-form-add");
-
-// let btnAddToDo = document.getElementById("btn-add-todo");
-// let btnAddProject = document.getElementById("btn-add-project");
-
-// let btnSubmitAdd = document.getElementById("button-submit-add");
-// let btnCancelAdd = document.getElementById("button-cancel-add");
-
-// let btnSubmitEdit = document.getElementById("button-submit-edit");
-// let btnCancelEdit = document.getElementById("button-cancel-edit");
-
-// btnAddToDo.addEventListener("click", () => {
-//   form.classList.remove("hidden");
-// });
-// btnAddProject.addEventListener("click", submitAddProject);
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   //
-// });
-// btnSubmitAdd.addEventListener("click", submitAddTodo);
-// btnCancelAdd.addEventListener("click", cancelAddTodo);
-// //
-// btnSubmitEdit.addEventListener("click", submitEditTodo);
-// btnCancelEdit.addEventListener("click", cancelEditTodo);
-// //
+function getStorageData() {
+  return JSON.parse(localStorage.getItem("projectsArray") || "[]");
+}
