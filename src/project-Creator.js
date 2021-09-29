@@ -1,10 +1,10 @@
 export let inboxProject = {
   id: "defaultID",
   name: "Inbox",
-  todos: [],
+  todos: getStorageData("inboxArray"),
 };
 
-export let projects = [];
+export let projects = getStorageData("projectsArray");
 
 class Project {
   constructor(name) {
@@ -20,6 +20,9 @@ function createProject(mainArray) {
   let project = new Project(projectInput.value);
   mainArray.push(project);
   projectInput.value = "";
+}
+function getStorageData(name) {
+  return JSON.parse(localStorage.getItem(name) || "[]");
 }
 
 export { createProject };

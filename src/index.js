@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
   renderProjects(projects);
   enableProjectNavigation();
-  // console.log(defProject);
-  // console.log(currentProject);
-  // console.log(projects);
 });
 
 iProject.addEventListener("click", function () {
@@ -70,9 +67,6 @@ btnSubmitAdd.addEventListener("click", (ev) => {
   todoFormAdd.classList.add("hidden");
   addToLocalStorage("projectsArray", projects);
   addToLocalStorage("inboxArray", defProject);
-  console.log(defProject);
-  console.log(currentProject);
-  console.log(projects);
   //   console.log(JSON.parse(localStorage.getItem("projectsArray") || "[]"));
 });
 
@@ -200,6 +194,6 @@ function addToLocalStorage(name, arr) {
   localStorage.setItem(name, JSON.stringify(arr));
 }
 
-function getStorageData() {
-  return JSON.parse(localStorage.getItem("projectsArray") || "[]");
-}
+// function getStorageData(name) {
+//   return JSON.parse(localStorage.getItem(name) || "[]");
+// }
