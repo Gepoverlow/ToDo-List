@@ -1,6 +1,6 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { projects, createProject, defaultProject } from "./project-Creator";
-// import { defaultProject, testProject } from "./todo-Creator.js";
+import { projects, createProject, inboxProject } from "./project-Creator";
+// import { inboxProject, testProject } from "./todo-Creator.js";
 import {
   renderTodos,
   renderProjects,
@@ -23,9 +23,9 @@ let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
 let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
-// let inbox = document.getElementById("defaultID");
+let iProject = document.getElementById("inbox");
 
-let defProject = projects[0].todos;
+let defProject = inboxProject.todos;
 let currentProject = defProject;
 let indexOfClickedTodo = undefined;
 
@@ -35,18 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
   renderProjects(projects);
   enableProjectNavigation();
-  console.log(currentProject);
-  console.log(projects);
+  // console.log(defProject);
+  // console.log(currentProject);
+  // console.log(projects);
+});
+
+iProject.addEventListener("click", function () {
+  renderTodos(defProject);
+  currentProject = defProject;
 });
 
 btnAddToDo.addEventListener("click", () => {
-  if (todoFormEdit.classList.contains("hidden") && projects.length !== 0) {
+  if (todoFormEdit.classList.contains("hidden")) {
     todoFormAdd.classList.remove("hidden");
-  }
-
-  if (projects.length === 0) {
-    alert("please create a project to store your todos in first");
-    return;
   }
 });
 
@@ -56,17 +57,22 @@ btnAddProject.addEventListener("click", () => {
     renderProjects(projects);
     enableProjectNavigation();
     giveAddedProjectActiveStatus();
-    addToLocalStorage(projects);
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
   }
 });
 
 btnSubmitAdd.addEventListener("click", (ev) => {
   ev.preventDefault();
-  createTodo(currentProject);
+  createTodo(currentProject, defProject);
   renderTodos(currentProject);
   todoFormAdd.reset();
   todoFormAdd.classList.add("hidden");
-  addToLocalStorage(projects);
+  addToLocalStorage("projectsArray", projects);
+  addToLocalStorage("inboxArray", defProject);
+  console.log(defProject);
+  console.log(currentProject);
+  console.log(projects);
   //   console.log(JSON.parse(localStorage.getItem("projectsArray") || "[]"));
 });
 
@@ -80,7 +86,8 @@ btnSubmitEdit.addEventListener("click", (ev) => {
   todoFormEdit.classList.add("hidden");
   submitEditTodo(currentProject, indexOfClickedTodo);
   renderTodos(currentProject);
-  addToLocalStorage(projects);
+  addToLocalStorage("projectsArray", projects);
+  addToLocalStorage("inboxArray", defProject);
 });
 
 btnCancelEdit.addEventListener("click", (ev) => {
@@ -109,7 +116,8 @@ todoUL.addEventListener("click", function (e) {
       }
     }
     renderTodos(currentProject);
-    addToLocalStorage(projects);
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
   }
 
   //EDIT
@@ -140,17 +148,18 @@ projectUL.addEventListener("click", function (e) {
     enableProjectNavigation();
   }
 
-  if (e.target.parentNode.id === "defaultID") {
-    alert("Default Project can not be deleted");
-    return;
-  }
-
-  if (e.target.textContent === "X" && e.target.parentNode.id !== "defaultID") {
+  if (e.target.textContent === "X") {
     deleteProject(projects);
     renderTodos(currentProject);
     // currentProject = projects[0].todos;
     giveLastProjectActiveStatus();
-    addToLocalStorage(projects);
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
+  }
+
+  if (projects.length < 1) {
+    currentProject = defProject;
+    renderTodos(currentProject);
   }
 });
 
@@ -181,12 +190,14 @@ function giveAddedProjectActiveStatus() {
 }
 
 function giveLastProjectActiveStatus() {
-  currentProject = projects[projects.length - 1].todos;
-  renderTodos(currentProject);
+  if (projects.length > 0) {
+    currentProject = projects[projects.length - 1].todos;
+    renderTodos(currentProject);
+  }
 }
 
-function addToLocalStorage(arr) {
-  localStorage.setItem("projectsArray", JSON.stringify(arr));
+function addToLocalStorage(name, arr) {
+  localStorage.setItem(name, JSON.stringify(arr));
 }
 
 function getStorageData() {

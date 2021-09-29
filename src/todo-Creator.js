@@ -1,4 +1,4 @@
-import { defaultProject } from "./project-Creator";
+import { inboxProject } from "./project-Creator";
 
 class Todo {
   constructor(title, description, dueDate, priority, notes) {
@@ -11,7 +11,7 @@ class Todo {
   }
 }
 
-function createTodo(currentArr) {
+function createTodo(currentArr, defProject) {
   let titleInput = document.getElementById("input-title-add").value;
   let descriptionInput = document.getElementById("input-description-add").value;
   let dueDateInput = document.getElementById("input-due-date-add").value;
@@ -27,8 +27,8 @@ function createTodo(currentArr) {
   );
 
   currentArr.push(todo);
-  if (currentArr !== defaultProject.todos) {
-    defaultProject.todos.push(todo);
+  if (currentArr !== defProject) {
+    inboxProject.todos.push(todo);
   }
 }
 

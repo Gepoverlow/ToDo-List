@@ -1,10 +1,10 @@
-export let defaultProject = {
+export let inboxProject = {
   id: "defaultID",
   name: "Inbox",
   todos: [],
 };
 
-export let projects = [defaultProject];
+export let projects = [];
 
 class Project {
   constructor(name) {
