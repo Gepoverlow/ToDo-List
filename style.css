@@ -22,7 +22,8 @@ ul {
   border: 3px solid red;
 }
 
-#project-ul li {
+#project-ul li,
+#inbox {
   display: flex;
   padding: 20px;
   cursor: pointer;
