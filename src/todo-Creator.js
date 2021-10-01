@@ -1,13 +1,14 @@
 import { inboxProject } from "./project-Creator";
 
 class Todo {
-  constructor(title, description, dueDate, priority, notes) {
+  constructor(title, description, dueDate, priority, notes, isChecked) {
     this.id = Date.now();
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.notes = notes;
+    this.isChecked = isChecked;
   }
 }
 
@@ -23,7 +24,8 @@ function createTodo(currentArr, defProject) {
     descriptionInput,
     dueDateInput,
     priorityInput,
-    notesInput
+    notesInput,
+    false
   );
 
   currentArr.push(todo);

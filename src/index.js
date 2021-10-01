@@ -121,6 +121,14 @@ todoUL.addEventListener("click", function (e) {
     renderTodoInfo(currentProject, indexOfClickedTodo);
   }
 
+  //CHANGE CHECKED STATUS
+  function changeCheckedStatus() {}
+
+  if (e.target.type === "checkbox") {
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
+  }
+
   if (e.target.textContent === "DELETE") {
     deleteTodo(currentProject);
   }

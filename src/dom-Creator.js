@@ -12,18 +12,45 @@ function renderTodos(todoArray) {
     let dueDateLI = document.createElement("p");
     let btnEditTodo = document.createElement("button");
     let btnDeleteTodo = document.createElement("button");
+    let isChecked = document.createElement("input");
 
     todoUL.appendChild(todoLI);
     todoLI.appendChild(titleLI);
     todoLI.appendChild(dueDateLI);
     todoLI.appendChild(btnEditTodo);
     todoLI.appendChild(btnDeleteTodo);
+    todoLI.appendChild(isChecked);
 
     todoLI.id = todoArray[i].id;
     titleLI.textContent = todoArray[i].title;
     dueDateLI.textContent = todoArray[i].dueDate;
     btnEditTodo.textContent = "EDIT";
     btnDeleteTodo.textContent = "DELETE";
+    isChecked.type = "checkbox";
+
+    // !! NEEDS WORK
+    isChecked.addEventListener("click", function () {
+      if (isChecked.checked) {
+        todoArray[i].isChecked = true;
+      } else {
+        todoArray[i].isChecked = false;
+      }
+    });
+
+    if (todoArray[i].isChecked === true) {
+      titleLI.style.textDecorationLine = "line-through";
+      isChecked.checked;
+    }
+
+    // !! NEEDS WORK
+
+    if (todoArray[i].priority === "0") {
+      todoLI.style.backgroundColor = "#99ff99";
+    } else if (todoArray[i].priority === "1") {
+      todoLI.style.backgroundColor = "#adadeb";
+    } else if (todoArray[i].priority === "2") {
+      todoLI.style.backgroundColor = "#ff8080";
+    }
   }
 }
 
