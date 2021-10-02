@@ -15,20 +15,41 @@ ul {
 
 #todo-ul li {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
   /* background-color: darkgray; */
   height: 50px;
-  width: 500px;
-  border: 3px solid red;
+  width: 1000px;
+  border: 1px solid grey;
+  margin-top: 4px;
 }
 
-#project-ul li,
-#inbox {
+#project-ul li {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
   padding: 20px;
   cursor: pointer;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-top: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#inbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  /* border: 1px solid black; */
+  margin-top: 5px;
+  overflow: hidden;
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
 }
 
 #container-all {
@@ -38,21 +59,34 @@ ul {
 }
 
 #container-top {
-  background-color: bisque;
+  background-color: #43a0c4;
   width: 100%;
   height: 100px;
+  padding-left: 20px;
 }
 
 #container-main {
-  background-color: coral;
+  background-color: #ebf2f7;
   height: 100%;
   display: flex;
 }
 
 #container-projects {
-  background-color: burlywood;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  background-color: #dadce0;
   width: 100%;
-  max-width: 200px;
+  max-width: 400px;
+}
+
+#container-projects-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
 }
 
 #container-todos {
@@ -68,6 +102,33 @@ ul {
   margin: 2rem;
   width: 500px;
   background-color: darkgray;
+}
+
+#btn-add-project {
+  /* font-size: 30px; 
+   border-radius: 50px;
+  width: 50px;
+  height: 50px;  */
+  margin-top: 10px;
+  cursor: pointer;
+}
+#btn-add-todo {
+  /* font-size: 30px; 
+   border-radius: 50px;
+  width: 50px;
+  height: 50px;  */
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+#project-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+}
+
+#project-list {
+  width: 100%;
 }
 
 .hidden {
@@ -117,5 +178,10 @@ ul {
 }
 
 .active {
-  color: red;
+  background-color: #ebf2f7;
+  border: none;
+}
+
+.material-icons-outlined {
+  cursor: pointer;
 }
