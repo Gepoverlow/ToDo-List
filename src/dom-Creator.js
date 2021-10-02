@@ -10,9 +10,9 @@ function renderTodos(todoArray) {
     let todoLI = document.createElement("li");
     let titleLI = document.createElement("p");
     let dueDateLI = document.createElement("p");
-    let btnEditTodo = document.createElement("button");
-    let btnDeleteTodo = document.createElement("button");
-    let isChecked = document.createElement("input");
+    let btnEditTodo = document.createElement("span");
+    let btnDeleteTodo = document.createElement("span");
+    let isChecked = document.createElement("span");
 
     todoUL.appendChild(todoLI);
     todoLI.appendChild(titleLI);
@@ -24,25 +24,31 @@ function renderTodos(todoArray) {
     todoLI.id = todoArray[i].id;
     titleLI.textContent = todoArray[i].title;
     dueDateLI.textContent = todoArray[i].dueDate;
-    btnEditTodo.textContent = "EDIT";
-    btnDeleteTodo.textContent = "DELETE";
-    isChecked.type = "checkbox";
+    btnEditTodo.textContent = "visibility";
+    btnDeleteTodo.textContent = "delete";
+    // isChecked.textContent = "pending_actions";
 
-    // !! NEEDS WORK
-    isChecked.addEventListener("click", function () {
-      if (isChecked.checked) {
-        todoArray[i].isChecked = true;
-      } else {
-        todoArray[i].isChecked = false;
-      }
-    });
+    btnDeleteTodo.className = "material-icons-outlined";
+    btnEditTodo.className = "material-icons-outlined";
+    isChecked.className = "material-icons-outlined";
 
     if (todoArray[i].isChecked === true) {
-      titleLI.style.textDecorationLine = "line-through";
-      isChecked.checked;
+      isChecked.textContent = "check";
+    } else if (todoArray[i].isChecked === false) {
+      isChecked.textContent = "pending_actions";
     }
 
-    // !! NEEDS WORK
+    // // !! NEEDS WORK
+    // isChecked.addEventListener("click", function () {
+    //   console.log("hi");
+    // });
+
+    // // if (todoArray[i].isChecked === true) {
+    // //   titleLI.style.textDecorationLine = "line-through";
+    // //   isChecked.checked;
+    // // }
+
+    // // !! NEEDS WORK
 
     if (todoArray[i].priority === "0") {
       todoLI.style.backgroundColor = "#99ff99";
@@ -62,11 +68,12 @@ function renderProjects(projectArray) {
   //CREATE TODO ELEMENTS
   for (let i = 0; i < projectArray.length; i++) {
     let projectLI = document.createElement("li");
-    let projectDeleteBtn = document.createElement("button");
+    let projectDeleteBtn = document.createElement("span");
 
     projectLI.textContent = projectArray[i].name;
-    projectDeleteBtn.textContent = "X";
+    projectDeleteBtn.textContent = "delete";
 
+    projectDeleteBtn.className = "material-icons-outlined";
     projectLI.id = projectArray[i].id;
     projectLI.classList.add("li");
 

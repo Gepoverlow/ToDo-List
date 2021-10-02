@@ -122,19 +122,33 @@ todoUL.addEventListener("click", function (e) {
   }
 
   //CHANGE CHECKED STATUS
-  function changeCheckedStatus() {}
-
-  if (e.target.type === "checkbox") {
-    addToLocalStorage("projectsArray", projects);
-    addToLocalStorage("inboxArray", defProject);
+  function changeCheckedStatus(array) {
+    indexOfClickedTodo = findIndex(currentProject, e.target.parentNode.id);
+    if (array[indexOfClickedTodo].isChecked === false) {
+      array[indexOfClickedTodo].isChecked = true;
+    } else if (array[indexOfClickedTodo].isChecked === true) {
+      array[indexOfClickedTodo].isChecked = false;
+    }
   }
 
-  if (e.target.textContent === "DELETE") {
+  //
+
+  if (
+    e.target.textContent === "check" ||
+    e.target.textContent === "pending_actions"
+  ) {
+    changeCheckedStatus(currentProject);
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
+    renderTodos(currentProject);
+  }
+
+  if (e.target.textContent === "delete") {
     deleteTodo(currentProject);
   }
 
   if (
-    e.target.textContent === "EDIT" &&
+    e.target.textContent === "visibility" &&
     todoFormAdd.classList.contains("hidden")
   ) {
     openEditForm();
@@ -150,7 +164,7 @@ projectUL.addEventListener("click", function (e) {
     enableProjectNavigation();
   }
 
-  if (e.target.textContent === "X") {
+  if (e.target.textContent === "delete") {
     deleteProject(projects);
     renderTodos(currentProject);
     // currentProject = projects[0].todos;
