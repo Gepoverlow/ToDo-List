@@ -1,6 +1,5 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
 import { projects, createProject, inboxProject } from "./project-Creator";
-// import { inboxProject, testProject } from "./todo-Creator.js";
 import {
   renderTodos,
   renderProjects,
@@ -35,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
   renderProjects(projects);
   enableProjectNavigation();
+  iProject.classList.add("active");
 });
 
 iProject.addEventListener("click", function () {
@@ -56,6 +56,7 @@ btnAddProject.addEventListener("click", () => {
     giveAddedProjectActiveStatus();
     addToLocalStorage("projectsArray", projects);
     addToLocalStorage("inboxArray", defProject);
+    iProject.classList.remove("active");
   }
 });
 
@@ -171,9 +172,11 @@ projectUL.addEventListener("click", function (e) {
     giveLastProjectActiveStatus();
     addToLocalStorage("projectsArray", projects);
     addToLocalStorage("inboxArray", defProject);
+    console.log(projects.length);
   }
 
   if (projects.length < 1) {
+    iProject.classList.add("active");
     currentProject = defProject;
     renderTodos(currentProject);
   }
