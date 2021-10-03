@@ -162,10 +162,18 @@ todoUL.addEventListener("click", function (e) {
 projectUL.addEventListener("click", function (e) {
   // DELETE
   function deleteProject(array) {
-    projects[findIndex(projects, e.target.parentNode.id)].todos = [];
+    // projects[findIndex(projects, e.target.parentNode.id)].todos = [];
+    let deletedProject =
+      projects[findIndex(projects, e.target.parentNode.id)].todos;
+    inboxProject.todos = inboxProject.todos.filter(
+      (i) => !deletedProject.includes(i)
+    );
+    defProject = inboxProject.todos;
+    //
     array.splice(findIndex(projects, e.target.parentNode.id), 1);
     renderProjects(projects);
     enableProjectNavigation();
+    console.log(defProject);
   }
 
   if (e.target.textContent === "delete") {
