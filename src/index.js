@@ -34,12 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos(currentProject);
   renderProjects(projects);
   enableProjectNavigation();
+  removeActiveStatusOnProjects();
   iProject.classList.add("active");
 });
 
 iProject.addEventListener("click", function () {
   renderTodos(defProject);
   currentProject = defProject;
+  removeActiveStatusOnProjects();
+  iProject.classList.add("active");
 });
 
 btnAddToDo.addEventListener("click", () => {
@@ -168,17 +171,17 @@ projectUL.addEventListener("click", function (e) {
   if (e.target.textContent === "delete") {
     deleteProject(projects);
     renderTodos(currentProject);
-    // currentProject = projects[0].todos;
     giveLastProjectActiveStatus();
     addToLocalStorage("projectsArray", projects);
     addToLocalStorage("inboxArray", defProject);
-    console.log(projects.length);
   }
 
   if (projects.length < 1) {
     iProject.classList.add("active");
     currentProject = defProject;
     renderTodos(currentProject);
+  } else if (projects.length >= 1) {
+    iProject.classList.remove("active");
   }
 });
 
@@ -200,6 +203,13 @@ function enableProjectNavigation() {
       // Add the active class to the current/clicked button
       this.className += " active";
     });
+  }
+}
+
+function removeActiveStatusOnProjects() {
+  let projectLIs = projectUL.getElementsByClassName("li");
+  for (let i = 0; i < projectLIs.length; i++) {
+    projectLIs[i].classList.remove("active");
   }
 }
 
