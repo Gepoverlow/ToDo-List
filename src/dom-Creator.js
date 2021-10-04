@@ -4,7 +4,8 @@ let projectLIs = projectUL.getElementsByClassName("li");
 
 function renderTodos(todoArray) {
   // !!
-  todoUL.innerHTML = "";
+  // todoUL.innerHTML = "";
+  emptyNode(todoUL);
   // !!
   for (let i = 0; i < todoArray.length; i++) {
     let todoLI = document.createElement("li");
@@ -26,7 +27,6 @@ function renderTodos(todoArray) {
     dueDateLI.textContent = todoArray[i].dueDate;
     btnEditTodo.textContent = "visibility";
     btnDeleteTodo.textContent = "delete";
-    // isChecked.textContent = "pending_actions";
 
     btnDeleteTodo.className = "material-icons-outlined";
     btnEditTodo.className = "material-icons-outlined";
@@ -49,9 +49,7 @@ function renderTodos(todoArray) {
 }
 
 function renderProjects(projectArray) {
-  // !!
-  projectUL.innerHTML = "";
-  // !!
+  emptyNode(projectUL);
 
   //CREATE TODO ELEMENTS
   for (let i = 0; i < projectArray.length; i++) {
@@ -106,6 +104,12 @@ function updateActiveProject(index) {
   let lastProject = projectLIs[index];
   if (projectLIs.length > 0) {
     lastProject.classList.add("active");
+  }
+}
+
+function emptyNode(node) {
+  while (node.lastElementChild) {
+    node.removeChild(node.lastElementChild);
   }
 }
 

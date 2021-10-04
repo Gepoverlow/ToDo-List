@@ -13,12 +13,10 @@ let todoUL = document.getElementById("todo-ul");
 let btnAddToDo = document.getElementById("btn-add-todo");
 
 let todoFormAdd = document.getElementById("todo-form-add");
-// let todoTitleAdd = document.getElementById("input-title-add");
 let btnSubmitAdd = document.getElementById("btn-submit-add");
 let btnCancelAdd = document.getElementById("btn-cancel-add");
 
 let todoFormEdit = document.getElementById("todo-form-edit");
-// let todoTitleEdit = "";
 let btnSubmitEdit = document.getElementById("btn-submit-edit");
 let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
@@ -242,7 +240,3 @@ function giveLastProjectActiveStatus() {
 function addToLocalStorage(name, arr) {
   localStorage.setItem(name, JSON.stringify(arr));
 }
-
-// function getStorageData(name) {
-//   return JSON.parse(localStorage.getItem(name) || "[]");
-// }
