@@ -38,18 +38,6 @@ function renderTodos(todoArray) {
       isChecked.textContent = "pending_actions";
     }
 
-    // // !! NEEDS WORK
-    // isChecked.addEventListener("click", function () {
-    //   console.log("hi");
-    // });
-
-    // // if (todoArray[i].isChecked === true) {
-    // //   titleLI.style.textDecorationLine = "line-through";
-    // //   isChecked.checked;
-    // // }
-
-    // // !! NEEDS WORK
-
     if (todoArray[i].priority === "0") {
       todoLI.style.backgroundColor = "#99ff99";
     } else if (todoArray[i].priority === "1") {

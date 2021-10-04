@@ -55,17 +55,17 @@
           <form id="todo-form-add" class="hidden">
             <div class="form-box">
               <label for="input-title-add">Title</label>
-              <input type="text" id="input-title-add" />
+              <input type="text" id="input-title-add" required>
             </div>
             <br />
             <div class="form-box">
               <label for="input-description-add">Description</label>
-              <input type="text" id="input-description-add" />
+              <input type="text" id="input-description-add" >
             </div>
             <br />
             <div class="form-box">
               <label for="input-due-date-add">Due Date</label>
-              <input type="date" id="input-due-date-add" />
+              <input type="date" id="input-due-date-add" required>
             </div>
             <br />
             <div class="form-box">
@@ -79,11 +79,11 @@
             <br />
             <div class="form-box">
               <label for="input-notes-add">Notes</label>
-              <input type="text" id="input-notes-add" />
+              <input type="text" id="input-notes-add" >
             </div>
             <div class="form-box">
-              <button id="btn-cancel-add">Cancel</button>
-              <button id="btn-submit-add">Submit Todo</button>
+              <button type="button" id="btn-cancel-add">Cancel</button>
+              <button type="submit" id="btn-submit-add">Submit Todo</button>
             </div>
           </form>
           <!-- --------------------------------------------------------------------------------------------------------- -->
@@ -92,7 +92,7 @@
           <form id="todo-form-edit" class="hidden">
             <div class="form-box">
               <label for="input-title-edit">Title</label>
-              <input type="text" id="input-title-edit" />
+              <input type="text" id="input-title-edit" required/>
             </div>
             <br />
             <div class="form-box">
@@ -102,7 +102,7 @@
             <br />
             <div class="form-box">
               <label for="input-due-date-edit">Due Date</label>
-              <input type="date" id="input-due-date-edit" />
+              <input type="date" id="input-due-date-edit" required/>
             </div>
             <br />
             <div class="form-box">

@@ -13,10 +13,12 @@ let todoUL = document.getElementById("todo-ul");
 let btnAddToDo = document.getElementById("btn-add-todo");
 
 let todoFormAdd = document.getElementById("todo-form-add");
+// let todoTitleAdd = document.getElementById("input-title-add");
 let btnSubmitAdd = document.getElementById("btn-submit-add");
 let btnCancelAdd = document.getElementById("btn-cancel-add");
 
 let todoFormEdit = document.getElementById("todo-form-edit");
+// let todoTitleEdit = "";
 let btnSubmitEdit = document.getElementById("btn-submit-edit");
 let btnCancelEdit = document.getElementById("btn-cancel-edit");
 
@@ -64,14 +66,16 @@ btnAddProject.addEventListener("click", () => {
 });
 
 btnSubmitAdd.addEventListener("click", (ev) => {
-  ev.preventDefault();
-  createTodo(currentProject, defProject);
-  renderTodos(currentProject);
-  todoFormAdd.reset();
-  todoFormAdd.classList.add("hidden");
-  addToLocalStorage("projectsArray", projects);
-  addToLocalStorage("inboxArray", defProject);
-  //   console.log(JSON.parse(localStorage.getItem("projectsArray") || "[]"));
+  if (todoFormAdd.checkValidity()) {
+    ev.preventDefault();
+    document.getElementById("todo-form-add").checkValidity();
+    createTodo(currentProject, defProject);
+    renderTodos(currentProject);
+    todoFormAdd.reset();
+    todoFormAdd.classList.add("hidden");
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
+  }
 });
 
 btnCancelAdd.addEventListener("click", (ev) => {
@@ -80,12 +84,14 @@ btnCancelAdd.addEventListener("click", (ev) => {
 });
 
 btnSubmitEdit.addEventListener("click", (ev) => {
-  ev.preventDefault();
-  todoFormEdit.classList.add("hidden");
-  submitEditTodo(currentProject, indexOfClickedTodo);
-  renderTodos(currentProject);
-  addToLocalStorage("projectsArray", projects);
-  addToLocalStorage("inboxArray", defProject);
+  if (todoFormEdit.checkValidity()) {
+    ev.preventDefault();
+    todoFormEdit.classList.add("hidden");
+    submitEditTodo(currentProject, indexOfClickedTodo);
+    renderTodos(currentProject);
+    addToLocalStorage("projectsArray", projects);
+    addToLocalStorage("inboxArray", defProject);
+  }
 });
 
 btnCancelEdit.addEventListener("click", (ev) => {
