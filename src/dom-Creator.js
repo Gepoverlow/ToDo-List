@@ -3,10 +3,8 @@ let projectUL = document.getElementById("project-ul");
 let projectLIs = projectUL.getElementsByClassName("li");
 
 function renderTodos(todoArray) {
-  // !!
-  // todoUL.innerHTML = "";
   emptyNode(todoUL);
-  // !!
+
   for (let i = 0; i < todoArray.length; i++) {
     let todoLI = document.createElement("li");
     let titleLI = document.createElement("p");
