@@ -1,17 +1,14 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 html {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
 }
 
 ul {
@@ -64,10 +61,13 @@ ul {
 }
 
 #container-top {
+  display: flex;
+  justify-content: left;
+  align-items: center;
   background-color: #43a0c4;
   min-width: 100vw;
   min-height: 10vh;
-  padding-left: 20px;
+  padding: 20px;
 }
 
 #container-main {
@@ -99,15 +99,17 @@ ul {
   align-items: center;
   min-width: 75vw;
   min-height: 90vh;
+  padding: 10px;
   background-color: #ebf2f7;
+  position: relative;
 }
 
 #todo-form-add,
-#todo-form-edit,
-#todo-form-view {
-  margin: 2rem;
+#todo-form-edit {
+  margin: 7rem;
   width: 500px;
   background-color: darkgray;
+  position: absolute;
 }
 
 #btn-add-project {
@@ -178,4 +180,10 @@ ul {
 
 .material-icons-outlined {
   cursor: pointer;
+}
+
+#logo {
+  padding-left: 20px;
+  cursor: crosshair;
+  font-size: 30px;
 }

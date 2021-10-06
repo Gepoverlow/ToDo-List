@@ -60,6 +60,8 @@ btnAddProject.addEventListener("click", () => {
     addToLocalStorage("projectsArray", projects);
     addToLocalStorage("inboxArray", defProject);
     iProject.classList.remove("active");
+    todoFormAdd.classList.add("hidden");
+    todoFormEdit.classList.add("hidden");
   }
 });
 
@@ -164,6 +166,8 @@ todoUL.addEventListener("click", function (e) {
 });
 
 projectUL.addEventListener("click", function (e) {
+  todoFormAdd.classList.add("hidden");
+  todoFormEdit.classList.add("hidden");
   // DELETE
   function deleteProject(array) {
     // projects[findIndex(projects, e.target.parentNode.id)].todos = [];
