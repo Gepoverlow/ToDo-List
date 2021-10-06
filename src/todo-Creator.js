@@ -1,5 +1,3 @@
-import { inboxProject } from "./project-Creator";
-
 class Todo {
   constructor(title, description, dueDate, priority, notes, isChecked) {
     this.id = Date.now();
@@ -27,10 +25,9 @@ function createTodo(currentArr, defProject) {
     notesInput,
     false
   );
-
   currentArr.push(todo);
   if (currentArr !== defProject) {
-    inboxProject.todos.push(todo);
+    defProject.push(todo);
   }
 }
 

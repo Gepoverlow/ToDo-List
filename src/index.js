@@ -1,5 +1,5 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { projects, createProject, inboxProject } from "./project-Creator";
+import { createProject } from "./project-Creator";
 import {
   renderTodos,
   renderProjects,
@@ -24,14 +24,28 @@ let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
 let iProject = document.getElementById("inbox");
 
-let defProject = inboxProject.todos;
-let currentProject = defProject;
+let inboxProject = {
+  id: "defaultID",
+  name: "Inbox",
+  todos: [],
+};
+
+let projects = [];
+
+let currentProject = undefined;
+let defProject = undefined;
 let indexOfClickedTodo = undefined;
 
 // EVENT LISTENERS
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderTodos(currentProject);
+  inboxProject.todos = getStorageData("inboxArray");
+  projects = getStorageData("projectsArray");
+
+  defProject = inboxProject.todos;
+  currentProject = defProject;
+
+  renderTodos(defProject);
   renderProjects(projects);
   enableProjectNavigation();
   removeActiveStatusOnProjects();
@@ -39,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 iProject.addEventListener("click", function () {
+  console.log(defProject);
   renderTodos(defProject);
   currentProject = defProject;
   removeActiveStatusOnProjects();
@@ -68,7 +83,7 @@ btnAddProject.addEventListener("click", () => {
 btnSubmitAdd.addEventListener("click", (ev) => {
   if (todoFormAdd.checkValidity()) {
     ev.preventDefault();
-    document.getElementById("todo-form-add").checkValidity();
+    // document.getElementById("todo-form-add").checkValidity();
     createTodo(currentProject, defProject);
     renderTodos(currentProject);
     todoFormAdd.reset();
@@ -134,10 +149,36 @@ todoUL.addEventListener("click", function (e) {
   //CHANGE CHECKED STATUS
   function changeCheckedStatus(array) {
     indexOfClickedTodo = findIndex(currentProject, e.target.parentNode.id);
-    if (array[indexOfClickedTodo].isChecked === false) {
-      array[indexOfClickedTodo].isChecked = true;
-    } else if (array[indexOfClickedTodo].isChecked === true) {
-      array[indexOfClickedTodo].isChecked = false;
+    //
+    array[indexOfClickedTodo].isChecked = array[indexOfClickedTodo].isChecked
+      ? false
+      : true;
+    //
+
+    if (currentProject !== defProject) {
+      let inboxIndex = findIndex(defProject, e.target.parentNode.id);
+      console.log(inboxIndex);
+      defProject[inboxIndex].isChecked = array[indexOfClickedTodo].isChecked
+        ? true
+        : false;
+    }
+    if (currentProject === defProject) {
+      let projectOfRepeatedTodo = projects.filter((project) =>
+        project.todos.some(
+          (todo) => todo.id === parseInt(e.target.parentNode.id)
+        )
+      )[0];
+      if (projectOfRepeatedTodo !== undefined) {
+        let repeatedTodoIndex = findIndex(
+          projectOfRepeatedTodo.todos,
+          e.target.parentNode.id
+        );
+        projectOfRepeatedTodo.todos[repeatedTodoIndex].isChecked = defProject[
+          indexOfClickedTodo
+        ].isChecked
+          ? true
+          : false;
+      }
     }
   }
 
@@ -243,4 +284,8 @@ function giveLastProjectActiveStatus() {
 
 function addToLocalStorage(name, arr) {
   localStorage.setItem(name, JSON.stringify(arr));
+}
+
+function getStorageData(name) {
+  return JSON.parse(localStorage.getItem(name) || "[]");
 }
