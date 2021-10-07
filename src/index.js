@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 iProject.addEventListener("click", function () {
-  console.log(defProject);
   renderTodos(defProject);
   currentProject = defProject;
   removeActiveStatusOnProjects();
@@ -222,7 +221,6 @@ projectUL.addEventListener("click", function (e) {
     array.splice(findIndex(projects, e.target.parentNode.id), 1);
     renderProjects(projects);
     enableProjectNavigation();
-    console.log(defProject);
   }
 
   if (e.target.textContent === "delete") {

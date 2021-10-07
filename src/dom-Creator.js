@@ -22,7 +22,9 @@ function renderTodos(todoArray) {
 
     todoLI.id = todoArray[i].id;
     titleLI.textContent = todoArray[i].title;
-    dueDateLI.textContent = todoArray[i].dueDate;
+    // dueDateLI.textContent = todoArray[i].dueDate;
+    dueDateLI.textContent = checkDueDate(todoArray[i].dueDate);
+    // console.log(checkDueDate(todoArray[i].dueDate));
     btnEditTodo.textContent = "visibility";
     btnDeleteTodo.textContent = "delete";
 
@@ -108,6 +110,22 @@ function updateActiveProject(index) {
 function emptyNode(node) {
   while (node.lastElementChild) {
     node.removeChild(node.lastElementChild);
+  }
+}
+
+function checkDueDate(value) {
+  let dateToday = new Date();
+  let dateInputted = new Date(value);
+
+  let diffTime = Math.abs(dateInputted - dateToday);
+  let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  if (dateToday > dateInputted && diffDays === 1) {
+    return `due today`;
+  } else if (dateToday < dateInputted) {
+    return `due in ${diffDays.toString()} days`;
+  } else if (dateToday > dateInputted) {
+    return `${diffDays.toString() - 1} days overdue`;
   }
 }
 
