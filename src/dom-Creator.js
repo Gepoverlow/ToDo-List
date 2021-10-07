@@ -22,9 +22,7 @@ function renderTodos(todoArray) {
 
     todoLI.id = todoArray[i].id;
     titleLI.textContent = todoArray[i].title;
-    // dueDateLI.textContent = todoArray[i].dueDate;
     dueDateLI.textContent = checkDueDate(todoArray[i].dueDate);
-    // console.log(checkDueDate(todoArray[i].dueDate));
     btnEditTodo.textContent = "visibility";
     btnDeleteTodo.textContent = "delete";
 
@@ -80,9 +78,16 @@ function renderTodoInfo(array, index) {
 
   titleInput.value = array[index].title;
   descriptionInput.value = array[index].description;
-  dueDateInput.value = array[index].dueDate;
+  // dueDateInput.value = array[index].dueDate;
   priorityInput.value = array[index].priority;
   notesInput.value = array[index].notes;
+  // dueDateInput.value = transformDateFormat(array[index].dueDate);
+
+  if (typeof array[index].dueDate === "string") {
+    dueDateInput.value = transformFromString(array[index].dueDate);
+  } else if (typeof array[index].dueDate === "object") {
+    dueDateInput.value = transformFromObj(array[index].dueDate);
+  }
 }
 
 function submitEditTodo(array, index) {
@@ -121,12 +126,36 @@ function checkDueDate(value) {
   let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   if (dateToday > dateInputted && diffDays === 1) {
-    return `due today`;
+    return `due today!`;
   } else if (dateToday < dateInputted) {
     return `due in ${diffDays.toString()} days`;
   } else if (dateToday > dateInputted) {
     return `${diffDays.toString() - 1} days overdue`;
   }
 }
+
+function transformFromObj(obj) {
+  let dd = String(obj.getDate()).padStart(2, "0");
+  let mm = String(obj.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = obj.getFullYear();
+
+  let transformedDate = `${yyyy}-${mm}-${dd}`;
+  console.log(transformedDate);
+  return transformedDate;
+}
+
+function transformFromString(str) {
+  let transformedDate = str.slice(0, 10);
+  return transformedDate;
+}
+
+// function transformDateFormat(date) {
+//   var dd = String(date.getDate()).padStart(2, "0");
+//   var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+//   var yyyy = today.getFullYear();
+
+//   transformedDate = `${mm}-${dd}-${yyyy}`;
+//   return transformedDate;
+// }
 
 export { renderTodos, renderProjects, renderTodoInfo, submitEditTodo };

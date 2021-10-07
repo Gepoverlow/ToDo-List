@@ -23,6 +23,7 @@ let btnCancelEdit = document.getElementById("btn-cancel-edit");
 let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
 let iProject = document.getElementById("inbox");
+let sortBtn = document.getElementById("sort");
 
 let inboxProject = {
   id: "defaultID",
@@ -111,6 +112,12 @@ btnSubmitEdit.addEventListener("click", (ev) => {
 btnCancelEdit.addEventListener("click", (ev) => {
   ev.preventDefault();
   todoFormEdit.classList.add("hidden");
+});
+
+sortBtn.addEventListener("click", () => {
+  console.log(defProject);
+  sortDates(defProject);
+  console.log(defProject);
 });
 
 todoUL.addEventListener("click", function (e) {
@@ -286,4 +293,12 @@ function addToLocalStorage(name, arr) {
 
 function getStorageData(name) {
   return JSON.parse(localStorage.getItem(name) || "[]");
+}
+
+function sortDates(defArray) {
+  defArray.sort(function compare(a, b) {
+    let dateA = new Date(a.dueDate);
+    let dateB = new Date(b.dueDate);
+    return dateA - dateB;
+  });
 }

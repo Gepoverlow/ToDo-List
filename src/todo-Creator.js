@@ -13,7 +13,9 @@ class Todo {
 function createTodo(currentArr, defProject) {
   let titleInput = document.getElementById("input-title-add").value;
   let descriptionInput = document.getElementById("input-description-add").value;
-  let dueDateInput = document.getElementById("input-due-date-add").value;
+  let dueDateInput = new Date(
+    document.getElementById("input-due-date-add").value
+  );
   let priorityInput = document.getElementById("input-priority-add").value;
   let notesInput = document.getElementById("input-notes-add").value;
   //
