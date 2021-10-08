@@ -49,12 +49,12 @@ function renderTodos(todoArray) {
 function renderProjects(projectArray) {
   emptyNode(projectUL);
 
-  //CREATE TODO ELEMENTS
   for (let i = 0; i < projectArray.length; i++) {
     let projectLI = document.createElement("li");
+    let projectP = document.createElement("p");
     let projectDeleteBtn = document.createElement("span");
 
-    projectLI.textContent = projectArray[i].name;
+    projectP.textContent = projectArray[i].name;
     projectDeleteBtn.textContent = "delete";
 
     projectDeleteBtn.className = "material-icons-outlined";
@@ -62,6 +62,7 @@ function renderProjects(projectArray) {
     projectLI.classList.add("li");
 
     projectUL.appendChild(projectLI);
+    projectLI.appendChild(projectP);
     projectLI.appendChild(projectDeleteBtn);
   }
 
@@ -78,10 +79,8 @@ function renderTodoInfo(array, index) {
 
   titleInput.value = array[index].title;
   descriptionInput.value = array[index].description;
-  // dueDateInput.value = array[index].dueDate;
   priorityInput.value = array[index].priority;
   notesInput.value = array[index].notes;
-  // dueDateInput.value = transformDateFormat(array[index].dueDate);
 
   if (typeof array[index].dueDate === "string") {
     dueDateInput.value = transformFromString(array[index].dueDate);
@@ -148,14 +147,5 @@ function transformFromString(str) {
   let transformedDate = str.slice(0, 10);
   return transformedDate;
 }
-
-// function transformDateFormat(date) {
-//   var dd = String(date.getDate()).padStart(2, "0");
-//   var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-//   var yyyy = today.getFullYear();
-
-//   transformedDate = `${mm}-${dd}-${yyyy}`;
-//   return transformedDate;
-// }
 
 export { renderTodos, renderProjects, renderTodoInfo, submitEditTodo };

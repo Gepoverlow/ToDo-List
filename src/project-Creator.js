@@ -1,11 +1,3 @@
-// export let inboxProject = {
-//   id: "defaultID",
-//   name: "Inbox",
-//   todos: getStorageData("inboxArray"),
-// };
-
-// export let projects = getStorageData("projectsArray");
-
 class Project {
   constructor(name) {
     this.id = Date.now();
@@ -21,8 +13,5 @@ function createProject(mainArray) {
   mainArray.push(project);
   projectInput.value = "";
 }
-// function getStorageData(name) {
-//   return JSON.parse(localStorage.getItem(name) || "[]");
-// }
 
 export { createProject };

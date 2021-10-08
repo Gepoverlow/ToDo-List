@@ -83,7 +83,6 @@ btnAddProject.addEventListener("click", () => {
 btnSubmitAdd.addEventListener("click", (ev) => {
   if (todoFormAdd.checkValidity()) {
     ev.preventDefault();
-    // document.getElementById("todo-form-add").checkValidity();
     createTodo(currentProject, defProject);
     renderTodos(currentProject);
     todoFormAdd.reset();
@@ -155,11 +154,10 @@ todoUL.addEventListener("click", function (e) {
   //CHANGE CHECKED STATUS
   function changeCheckedStatus(array) {
     indexOfClickedTodo = findIndex(currentProject, e.target.parentNode.id);
-    //
+
     array[indexOfClickedTodo].isChecked = array[indexOfClickedTodo].isChecked
       ? false
       : true;
-    //
 
     if (currentProject !== defProject) {
       let inboxIndex = findIndex(defProject, e.target.parentNode.id);
@@ -217,7 +215,6 @@ projectUL.addEventListener("click", function (e) {
   todoFormEdit.classList.add("hidden");
   // DELETE
   function deleteProject(array) {
-    // projects[findIndex(projects, e.target.parentNode.id)].todos = [];
     let deletedProject =
       projects[findIndex(projects, e.target.parentNode.id)].todos;
     inboxProject.todos = inboxProject.todos.filter(
