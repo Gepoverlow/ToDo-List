@@ -1,4 +1,38 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
+import {
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCQPzK1Z-zjKI7ja6BGPnT-oQbUHMbQMy8",
+  authDomain: "gpotodolist.firebaseapp.com",
+  projectId: "gpotodolist",
+  storageBucket: "gpotodolist.appspot.com",
+  messagingSenderId: "75221948225",
+  appId: "1:75221948225:web:ae0e7702b6ad51418273c0",
+};
+
+initializeApp(firebaseConfig);
+
+//
 import { createProject } from "./project-Creator";
 import {
   renderTodos,
@@ -37,6 +71,19 @@ let currentProject = undefined;
 let defProject = undefined;
 let indexOfClickedTodo = undefined;
 
+async function saveMessage(messageText) {
+  // Add a new message entry to the Firebase database.
+  try {
+    await addDoc(collection(getFirestore(), "ProjectArray"), {
+      name: "Projects Array",
+      text: messageText,
+      timestamp: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error("Error writing new message to Firebase Database", error);
+  }
+}
+
 // EVENT LISTENERS
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -45,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   defProject = inboxProject.todos;
   currentProject = defProject;
+
+  console.log(projects);
+  saveMessage(projects);
 
   renderTodos(defProject);
   renderProjects(projects);
