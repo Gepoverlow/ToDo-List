@@ -21,6 +21,15 @@ import {
   signOut,
 } from "firebase/auth";
 
+import { createProject } from "./project-Creator";
+import {
+  renderTodos,
+  renderProjects,
+  renderTodoInfo,
+  submitEditTodo,
+} from "./dom-Creator.js";
+import { createTodo, findIndex } from "./todo-Creator.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCQPzK1Z-zjKI7ja6BGPnT-oQbUHMbQMy8",
   authDomain: "gpotodolist.firebaseapp.com",
@@ -31,16 +40,6 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-
-//
-import { createProject } from "./project-Creator";
-import {
-  renderTodos,
-  renderProjects,
-  renderTodoInfo,
-  submitEditTodo,
-} from "./dom-Creator.js";
-import { createTodo, findIndex } from "./todo-Creator.js";
 
 let projectUL = document.getElementById("project-ul");
 let todoUL = document.getElementById("todo-ul");
@@ -58,6 +57,8 @@ let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
 let iProject = document.getElementById("inbox");
 let sortBtn = document.getElementById("sort");
+
+let logInBtn = document.getElementById("login");
 
 let inboxProject = {
   id: "defaultID",

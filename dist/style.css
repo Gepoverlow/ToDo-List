@@ -65,7 +65,7 @@ ul {
 
 #container-top {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   background-color: #43a0c4;
   min-width: 100vw;
@@ -135,6 +135,12 @@ ul {
 
 .hidden {
   display: none;
+}
+
+.logo-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-box {
@@ -216,4 +222,9 @@ ul {
   #todo-form-edit {
     margin: 5rem;
   }
+}
+
+#login {
+  margin-right: 20px;
+  cursor: pointer;
 }
