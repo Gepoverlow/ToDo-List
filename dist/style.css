@@ -228,3 +228,24 @@ ul {
   margin-right: 20px;
   cursor: pointer;
 }
+
+#login-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile-info {
+  align-items: center;
+  justify-content: center;
+}
+
+#profile-picture {
+  height: 30px;
+  width: 30px;
+  margin: 0px 10px 0px 10px;
+}
+
+#profile-info > #logout {
+  cursor: pointer;
+}

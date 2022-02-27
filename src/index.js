@@ -41,6 +41,48 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
+//AUTH
+
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
+
+function googleLogIn() {
+  signInWithPopup(auth, provider)
+    .then((res) => {
+      console.log(res.user);
+      showProfileInfo(res.user);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+function logOut() {
+  auth
+    .signOut()
+    .then(() => {
+      console.log("user logged out!");
+      hideProfileInfo();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+function showProfileInfo(user) {
+  document.getElementById("profile-info").style.display = "flex";
+  document.getElementById("profile-info").classList.remove("hidden");
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("profile-name").textContent = `${user.displayName}`;
+  document.getElementById("profile-picture").src = `${user.photoURL}`;
+}
+
+function hideProfileInfo() {
+  document.getElementById("profile-info").style.display = "none";
+}
+
+//
+
 let projectUL = document.getElementById("project-ul");
 let todoUL = document.getElementById("todo-ul");
 let btnAddToDo = document.getElementById("btn-add-todo");
@@ -59,6 +101,12 @@ let iProject = document.getElementById("inbox");
 let sortBtn = document.getElementById("sort");
 
 let logInBtn = document.getElementById("login");
+let logOutBtn = document.getElementById("logout");
+
+//
+logInBtn.addEventListener("click", googleLogIn);
+logOutBtn.addEventListener("click", logOut);
+//
 
 let inboxProject = {
   id: "defaultID",
@@ -72,19 +120,6 @@ let currentProject = undefined;
 let defProject = undefined;
 let indexOfClickedTodo = undefined;
 
-async function saveMessage(messageText) {
-  // Add a new message entry to the Firebase database.
-  try {
-    await addDoc(collection(getFirestore(), "ProjectArray"), {
-      name: "Projects Array",
-      text: messageText,
-      timestamp: serverTimestamp(),
-    });
-  } catch (error) {
-    console.error("Error writing new message to Firebase Database", error);
-  }
-}
-
 // EVENT LISTENERS
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -93,9 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   defProject = inboxProject.todos;
   currentProject = defProject;
-
-  console.log(projects);
-  saveMessage(projects);
 
   renderTodos(defProject);
   renderProjects(projects);
