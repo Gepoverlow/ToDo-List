@@ -12,6 +12,7 @@ import {
   updateDoc,
   doc,
   serverTimestamp,
+  getDocs,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -80,6 +81,22 @@ function hideProfileInfo() {
   document.getElementById("login").style.display = "block";
 }
 
+// FIRESTORE
+
+const db = getFirestore();
+const colRef = collection(db, "books");
+
+getDocs(colRef)
+  .then((snapshot) => {
+    let books = [];
+    snapshot.docs.forEach((doc) => {
+      books.push({ ...doc.data(), id: doc.id });
+    });
+    console.log(books);
+  })
+  .catch((e) => {
+    console.log(e.message);
+  });
 //
 
 let projectUL = document.getElementById("project-ul");
