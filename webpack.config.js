@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   entry: "./src/index.js",
   // To debug more efficiently:
-  devtool: "inline-source-map",
+  devtool: "source-map",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),

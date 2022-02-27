@@ -236,6 +236,7 @@ ul {
 }
 
 #profile-info {
+  display: none;
   align-items: center;
   justify-content: center;
 }

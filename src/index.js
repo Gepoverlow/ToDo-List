@@ -58,8 +58,7 @@ function googleLogIn() {
 }
 
 function logOut() {
-  auth
-    .signOut()
+  signOut(auth)
     .then(() => {
       console.log("user logged out!");
       hideProfileInfo();
@@ -71,14 +70,14 @@ function logOut() {
 
 function showProfileInfo(user) {
   document.getElementById("profile-info").style.display = "flex";
-  document.getElementById("profile-info").classList.remove("hidden");
-  document.getElementById("login").classList.add("hidden");
+  document.getElementById("login").style.display = "none";
   document.getElementById("profile-name").textContent = `${user.displayName}`;
   document.getElementById("profile-picture").src = `${user.photoURL}`;
 }
 
 function hideProfileInfo() {
   document.getElementById("profile-info").style.display = "none";
+  document.getElementById("login").style.display = "block";
 }
 
 //
