@@ -9,6 +9,7 @@ function renderTodos(todoArray) {
     let todoLI = document.createElement("li");
     let titleLI = document.createElement("p");
     let dueDateLI = document.createElement("p");
+    let iconContainer = document.createElement("div");
     let btnEditTodo = document.createElement("span");
     let btnDeleteTodo = document.createElement("span");
     let isChecked = document.createElement("span");
@@ -16,9 +17,10 @@ function renderTodos(todoArray) {
     todoUL.appendChild(todoLI);
     todoLI.appendChild(titleLI);
     todoLI.appendChild(dueDateLI);
-    todoLI.appendChild(btnEditTodo);
-    todoLI.appendChild(btnDeleteTodo);
-    todoLI.appendChild(isChecked);
+    todoLI.appendChild(iconContainer);
+    iconContainer.appendChild(btnEditTodo);
+    iconContainer.appendChild(btnDeleteTodo);
+    iconContainer.appendChild(isChecked);
 
     todoLI.id = todoArray[i].id;
     titleLI.textContent = todoArray[i].title;
@@ -26,6 +28,7 @@ function renderTodos(todoArray) {
     btnEditTodo.textContent = "visibility";
     btnDeleteTodo.textContent = "delete";
 
+    iconContainer.className = "container-icons";
     btnDeleteTodo.className = "material-icons-outlined";
     btnEditTodo.className = "material-icons-outlined";
     isChecked.className = "material-icons-outlined";

@@ -20,12 +20,13 @@ ul {
 
 #todo-ul li {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   height: 50px;
   min-width: 60vw;
   border: 1px solid grey;
   margin-top: 4px;
+  padding: 0px 15px 0px 15px;
 }
 
 #project-ul li {
@@ -249,4 +250,8 @@ ul {
 
 #profile-info > #logout {
   cursor: pointer;
+}
+.container-icons {
+  display: flex;
+  gap: 40px;
 }

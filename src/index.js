@@ -1,26 +1,4 @@
 //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START //FRESH START//FRESH START//FRESH START//FRESH START
-import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  limit,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-  doc,
-  serverTimestamp,
-  getDocs,
-} from "firebase/firestore";
-import {
-  getAuth,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
 
 import { createProject } from "./project-Creator";
 import {
@@ -30,74 +8,6 @@ import {
   submitEditTodo,
 } from "./dom-Creator.js";
 import { createTodo, findIndex } from "./todo-Creator.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCQPzK1Z-zjKI7ja6BGPnT-oQbUHMbQMy8",
-  authDomain: "gpotodolist.firebaseapp.com",
-  projectId: "gpotodolist",
-  storageBucket: "gpotodolist.appspot.com",
-  messagingSenderId: "75221948225",
-  appId: "1:75221948225:web:ae0e7702b6ad51418273c0",
-};
-
-initializeApp(firebaseConfig);
-
-//AUTH
-
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
-
-function googleLogIn() {
-  signInWithPopup(auth, provider)
-    .then((res) => {
-      console.log(res.user);
-      showProfileInfo(res.user);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-}
-
-function logOut() {
-  signOut(auth)
-    .then(() => {
-      console.log("user logged out!");
-      hideProfileInfo();
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-}
-
-function showProfileInfo(user) {
-  document.getElementById("profile-info").style.display = "flex";
-  document.getElementById("login").style.display = "none";
-  document.getElementById("profile-name").textContent = `${user.displayName}`;
-  document.getElementById("profile-picture").src = `${user.photoURL}`;
-}
-
-function hideProfileInfo() {
-  document.getElementById("profile-info").style.display = "none";
-  document.getElementById("login").style.display = "block";
-}
-
-// FIRESTORE
-
-const db = getFirestore();
-const colRef = collection(db, "books");
-
-getDocs(colRef)
-  .then((snapshot) => {
-    let books = [];
-    snapshot.docs.forEach((doc) => {
-      books.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(books);
-  })
-  .catch((e) => {
-    console.log(e.message);
-  });
-//
 
 let projectUL = document.getElementById("project-ul");
 let todoUL = document.getElementById("todo-ul");
@@ -115,14 +25,6 @@ let btnAddProject = document.getElementById("btn-add-project");
 let inputAddProject = document.getElementById("project-input");
 let iProject = document.getElementById("inbox");
 let sortBtn = document.getElementById("sort");
-
-let logInBtn = document.getElementById("login");
-let logOutBtn = document.getElementById("logout");
-
-//
-logInBtn.addEventListener("click", googleLogIn);
-logOutBtn.addEventListener("click", logOut);
-//
 
 let inboxProject = {
   id: "defaultID",
